@@ -1,8 +1,6 @@
 'use strict';
 
 const Promise = require('bluebird');
-
-
 const logger = require('../services/logger.service');
 const config = require('../config');
 
@@ -10,7 +8,9 @@ const config = require('../config');
 let web3 = null;
 
 // get connection to mongodb
-function getEthereumConnection(network) {
+function get(network) {
+
+    console.log('ddd');
 
     if (network === 'rinkeby') {
         web3 = new Web3(
@@ -21,11 +21,7 @@ function getEthereumConnection(network) {
 }
 
 module.exports = {
-    getConnection: function(network) {
-        return getEthereumConnection(network).then((conn) => {
-            return conn.collection('token_events');
-        })
-    }
+    get : get
 };
 
 

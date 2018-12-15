@@ -16,13 +16,14 @@ class TokenController {
     recordState() {
 
         // fire with cron job
-        // get Events (since blocknr)
-        // filter new
+        // get new  Events (since blocknr)
         // store in mongo
 
-        let web3 = eth.getConnection('rinkeby') // get page collection
-
         console.log('web3');
+
+        let web3 = eth.get('rinkeby'); // get page collection
+
+
         console.log(web3);
     }
 
