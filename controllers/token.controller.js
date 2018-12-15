@@ -1,5 +1,6 @@
 'use strict';
 
+let eth = require('../connectors/ethereum.connector');
 // let FacebookService = require('../services/facebook'),
 //     MappingService = require('../services/mapping');
 
@@ -19,7 +20,10 @@ class TokenController {
         // filter new
         // store in mongo
 
-        console.log('checked with token');
+        let web3 = eth.getConnection('rinkeby') // get page collection
+
+        console.log('web3');        
+        console.log(web3);
     }
 
     handleGetCall(req, res) {
