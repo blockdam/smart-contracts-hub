@@ -4,8 +4,7 @@ let app = require('./express'),
 
 // listen on port appConfig.port
 app.listen(appConfig.port, () => {
-    // debug(`server started on port ${appConfig.port} (${appConfig.env})`);
-    console.log('server started on port ' + appConfig.port + ' (' + appConfig.env + ')');
+    console.log('server started on port ' + appConfig.port);
 
     let token = new cronJob('1 * * * * *', function(){
 

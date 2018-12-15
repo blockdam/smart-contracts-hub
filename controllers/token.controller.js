@@ -61,6 +61,8 @@ const tokenCtrl = () => {
             // filter new
             // store in mongo
 
+            res.status(200).send('werkt');
+
         }
 
     }
