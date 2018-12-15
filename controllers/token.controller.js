@@ -10,7 +10,7 @@ class TokenController {
 
         this.tokenAbi = {};
         this.web3 = eth.get('rinkeby');
-        this.tokenContract = web3.eth.contract(self.tokenAbi).at(config.addresses.bcdToken);
+        this.tokenContract = this.web3.eth.contract(this.tokenAbi).at(config.addresses.bcdToken);
     }
 
     recordState() {
