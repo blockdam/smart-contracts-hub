@@ -11,8 +11,6 @@ let web3 = null;
 // get connection to mongodb
 function get(network) {
 
-    console.log('ddd');
-
     if (network === 'rinkeby') {
         web3 = new Web3(
                 new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
