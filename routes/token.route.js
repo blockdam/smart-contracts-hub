@@ -6,7 +6,7 @@ let express = require('express'),
 const router = express.Router();
 
 
-const ctrl = tokenCtrl(); // create instance of instagram controller
+const ctrl = new tokenCtrl(); // create instance of instagram controller
 
 // CRUD routes
 router.route('/')
