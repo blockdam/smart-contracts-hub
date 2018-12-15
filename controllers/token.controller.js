@@ -1,6 +1,7 @@
 'use strict';
 
 const eth = require('../connectors/ethereum.connector');
+const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const config = require('../config');
 const fs = require('graceful-fs');
@@ -18,14 +19,19 @@ class TokenController {
 
         let self = this;
 
-        eth.get('rinkeby').then( (web3) => {
+        return new Promise((resolve, reject) => {
 
-            self.web3 = web3;
-            self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+            eth.get('rinkeby').then( (web3) => {
 
-        })
-        .catch(error => {
-            logger.error(error);
+                self.web3 = web3;
+                self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+                resolve();
+
+            })
+            .catch(error => {
+                logger.error(error);
+                reject(error);
+            });
         });
     }
 
@@ -35,7 +41,7 @@ class TokenController {
         // get new  Events (since blocknr)
         // store in mongo
 
-        console.log(this.tokenContract);
+        console.log('yo');
 
         this.tokenContract.events.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
             if (err) {
