@@ -8,6 +8,16 @@ const tokenCtrl = () => {
     // let facebookService = FacebookService();
     // let mappingService = MappingService();
 
+    let recordState = function recordState() {
+
+        // fire with cron job
+        // get Events (since blocknr)
+        // filter new
+        // store in mongo
+
+        console.log('checked with token');
+    }
+
     return {
 
         handleGetCall: (req, res) => {
@@ -54,15 +64,7 @@ const tokenCtrl = () => {
 
         },
 
-        recordState: () => {
-
-            // fire with cron job
-            // get Events (since blocknr)
-            // filter new
-            // store in mongo
-
-            console.log('checked with token');
-        }
+        recordState: recordState
 
     }
 
