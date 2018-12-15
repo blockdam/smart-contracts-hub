@@ -14,7 +14,7 @@ function getEthereumConnection(network) {
 
     if (network === 'rinkeby') {
         web3 = new Web3(
-                new Web3.providers.HttpProvider('https://rinkeby.infura.io/');
+                new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
         );
     }
     return web3;

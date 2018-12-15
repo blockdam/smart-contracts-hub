@@ -22,7 +22,7 @@ class TokenController {
 
         let web3 = eth.getConnection('rinkeby') // get page collection
 
-        console.log('web3');        
+        console.log('web3');
         console.log(web3);
     }
 
