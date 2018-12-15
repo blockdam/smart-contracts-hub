@@ -35,15 +35,15 @@ class TokenController {
         // get new  Events (since blocknr)
         // store in mongo
 
-        // this.tokenContract.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
-        //     if (err) {
-        //         console.log(err)
-        //     }
-        //     if (data) {
-        //
-        //         logger.info(data);
-        //     }
-        // });
+        this.tokenContract.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+            if (err) {
+                console.log(err)
+            }
+            if (data) {
+
+                logger.info(data);
+            }
+        });
 
 
 
