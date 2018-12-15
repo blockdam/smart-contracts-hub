@@ -19,9 +19,8 @@ function get(network) {
             web3 = new Web3(
                 new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
             );
+            resolve(web3);
         }
-
-        resolve(web3);
     });
 
 }

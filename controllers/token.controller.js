@@ -11,12 +11,22 @@ class TokenController {
     constructor () {
 
         this.tokenAbi = fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json');
+
+    }
+
+    init() {
+
+        self = this;
+
         eth.get('rinkeby').then( (web3) => {
 
-            this.web3 = web3;
-            this.tokenContract = this.web3.eth.contract(this.tokenAbi).at(config.addresses.bcdToken);
+            self.web3 = web3;
+            self.tokenContract = self.web3.eth.contract(self.tokenAbi).at(config.addresses.bcdToken);
 
         })
+        .catch(error => {
+            logger.error(error);
+        });
     }
 
     recordState() {
@@ -25,15 +35,15 @@ class TokenController {
         // get new  Events (since blocknr)
         // store in mongo
 
-        this.tokenContract.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
-            if (err) {
-                console.log(err)
-            }
-            if (data) {
-
-                logger.info(data);
-            }
-        });
+        // this.tokenContract.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+        //     if (err) {
+        //         console.log(err)
+        //     }
+        //     if (data) {
+        //
+        //         logger.info(data);
+        //     }
+        // });
 
 
 
