@@ -21,7 +21,6 @@ class TokenController {
         eth.get('rinkeby').then( (web3) => {
 
             self.web3 = web3;
-            console.log(web3);
             self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
 
         })
