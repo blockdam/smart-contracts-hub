@@ -1,14 +1,16 @@
 'use strict';
 
-let eth = require('../connectors/ethereum.connector');
+const eth = require('../connectors/ethereum.connector');
+const config = require('../config');
 
 class TokenController {
 
 
     constructor () {
 
-        // let facebookService = FacebookService();
-        // let mappingService = MappingService();
+        this.tokenAbi = {};
+        this.web3 = eth.get('rinkeby');
+        this.tokenContract = web3.eth.contract(self.tokenAbi).at(config.addresses.bcdToken);
     }
 
     recordState() {
@@ -17,13 +19,14 @@ class TokenController {
         // get new  Events (since blocknr)
         // store in mongo
 
-        let web3;
+        this.tokenContract.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+            if (err) {
+                console.log(err)
+            }
+            if (data) {
 
-        web3 = eth.get('rinkeby')
-            .then( (web3) => {
-
-                console.log('web3');
-                console.log(web3);
+                self.bcd.eventList.push(data);
+            }
         });
 
 
