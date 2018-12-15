@@ -13,6 +13,6 @@ app.listen(appConfig.port, () => {
         tokenCtrl.recordState();
     }, null, false);
 
-token.start();
+    token.start();
 
 });
