@@ -16,7 +16,7 @@ class TokenController {
 
     init() {
 
-        self = this;
+        let self = this;
 
         eth.get('rinkeby').then( (web3) => {
 
