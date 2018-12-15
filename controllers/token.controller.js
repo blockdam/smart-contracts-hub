@@ -22,7 +22,7 @@ class TokenController {
 
             self.web3 = web3;
             console.log(web3);
-            self.tokenContract = web3.eth.contract(self.tokenAbi).at(config.addresses.bcdToken);
+            self.tokenContract = web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
 
         })
         .catch(error => {
