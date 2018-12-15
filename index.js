@@ -1,7 +1,7 @@
 const app = require('./express'),
     appConfig = require('./config/index'),
     TokenCtrl = require('./controllers/token.controller'),
-    tokenCtrl = new TokenCtrl();
+    tokenCtrl = new TokenCtrl(),
     cronJob = require('cron').CronJob;
 
 // listen on port appConfig.port
