@@ -8,6 +8,7 @@ app.listen(appConfig.port, () => {
 
     let token = new cronJob('1 * * * * *', function(){
         let tokenCtrl = require('./controllers/token.controller');
+        console.log('checked with token');
         tokenCtrl.recordState();
     }, null, false);
 
