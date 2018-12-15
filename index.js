@@ -1,6 +1,6 @@
 const app = require('./express'),
     appConfig = require('./config/index'),
-    TokenCtrl = require('./controllers/token.controller'),
+    TokenController = require('./controllers/token.controller'),
     cronJob = require('cron').CronJob;
 
 // listen on port appConfig.port
@@ -9,7 +9,7 @@ app.listen(appConfig.port, () => {
 
     let token = new cronJob('1 * * * * *', function(){
         console.log('checked with token');
-        let tokenCtrl = new TokenCtrl();
+        let tokenCtrl = new TokenController();
         tokenCtrl.recordState();
     }, null, false);
 
