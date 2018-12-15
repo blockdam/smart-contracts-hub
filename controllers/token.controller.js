@@ -54,14 +54,14 @@ const tokenCtrl = () => {
 
         },
 
-        recordState: (req, res) => {
+        recordState: () => {
 
             // fire with cron job
             // get Events (since blocknr)
             // filter new
             // store in mongo
 
-            res.status(200).send('werkt');
+  
 
         }
 
