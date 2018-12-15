@@ -1,14 +1,16 @@
 'use strict';
 
 const eth = require('../connectors/ethereum.connector');
+const logger = require('../services/logger.service');
 const config = require('../config');
+const fs = require('graceful-fs');
 
 class TokenController {
 
 
     constructor () {
 
-        this.tokenAbi = {};
+        this.tokenAbi = fs.readFileSync('../abi/bcdToken.json');
         this.web3 = eth.get('rinkeby');
         this.tokenContract = this.web3.eth.contract(this.tokenAbi).at(config.addresses.bcdToken);
     }
@@ -25,7 +27,7 @@ class TokenController {
             }
             if (data) {
 
-                self.bcd.eventList.push(data);
+                logger.info(data);
             }
         });
 
