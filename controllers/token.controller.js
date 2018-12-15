@@ -10,7 +10,7 @@ class TokenController {
 
     constructor () {
 
-        this.tokenAbi = fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json');
+        this.tokenAbi = json.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
 
     }
 
