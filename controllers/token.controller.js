@@ -11,14 +11,12 @@ class TokenController {
     constructor () {
 
         this.tokenAbi = fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json');
-        eth.get('rinkeby').then( (web3) =>{
+        eth.get('rinkeby').then( (web3) => {
 
             this.web3 = web3;
             this.tokenContract = this.web3.eth.contract(this.tokenAbi).at(config.addresses.bcdToken);
 
         })
-
-
     }
 
     recordState() {

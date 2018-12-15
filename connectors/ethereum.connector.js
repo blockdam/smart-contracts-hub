@@ -11,12 +11,19 @@ let web3 = null;
 // get connection to mongodb
 function get(network) {
 
-    if (network === 'rinkeby') {
-        web3 = new Web3(
+    let self = this;
+
+    return new Promise((resolve, reject) => {
+
+        if (network === 'rinkeby') {
+            web3 = new Web3(
                 new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
-        );
-    }
-    return web3;
+            );
+        }
+
+        resolve(web3);
+    });
+
 }
 
 module.exports = {
