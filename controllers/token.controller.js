@@ -145,6 +145,29 @@ class TokenController {
 
     }
 
+    getBalanceHistory(req, res) {
+
+        let self = this;
+
+        let options = {
+            query : {}
+        };
+
+        console.log(self);
+
+        self.eventPersistence.find(options)
+            .then( (results) => {
+
+                return self.tokenService.calcBalanceHistory(results);
+
+            })
+            .then( (history) => {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(history));
+            });
+
+    }
+
 
 }
 
