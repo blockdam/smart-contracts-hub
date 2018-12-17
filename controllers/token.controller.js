@@ -62,6 +62,14 @@ class TokenController {
 
         console.log('yo');
 
+        let subscription = web3.eth.subscribe('pendingTransactions', function (error, result) {})
+            .on("data", function (transactionHash) {
+                web3.eth.getTransaction(transactionHash)
+                    .then(function (transaction) {
+                        console.log(transaction);
+                    });
+            })
+
         // this.tokenContract.events.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
         //     if (err) {
         //         console.log(err)
