@@ -61,7 +61,7 @@ class EventPersistence {
      * @param data
      * @param correlationId
      */
-    save(data, correlationId, options) {
+    save(data) {
         const self = this;
         let collection = null;
         return new Promise((resolve, reject) => {
@@ -76,14 +76,14 @@ class EventPersistence {
                         return collection.insertOne(data);
                     }
                 })
-                .then((d) => {
-                    logger.info('Saved event to database', correlationId);
-                    resolve(data);
+                .then(() => {
+                    logger.info('Saved event to database');
+                    resolve();
                 })
                 .catch((error) => {
                     // error.correlationId = correlationId;
                     reject(error);
-                })
+                });
         })
     }
 
