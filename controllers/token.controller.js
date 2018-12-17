@@ -3,6 +3,9 @@
 const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
+const TokenService = require('../services/token.service');
+const EventDefinition = require('../definitions/event.definition');
+const EventPersistence = require('../persistences/event.persistence');
 const config = require('../config');
 const fs = require('graceful-fs');
 const WebSocket = require('ws');
@@ -12,6 +15,9 @@ class TokenController {
 
     constructor () {
 
+        this.tokenService = new TokenService();
+        this.eventPersistence = new EventPersistence();
+        this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.wss = null;
 
@@ -55,6 +61,7 @@ class TokenController {
     recordState() {
 
         let self = this;
+        self.eventList.push(data);
 
         // fire with cron job
         // get new  Events (since blocknr)
@@ -82,12 +89,30 @@ class TokenController {
             }
             if (data) {
 
-                logger.info(data);
+                self.eventList.push(data);
             }
         });
 
+        setTimeout( function() {
+
+            let self = this;
+            let saveData = null;
+
+            self.eventList.forEach( (event) => {
+
+                self.eventDefinition.getMapping(event)
+                .then((mappedData) => {
+                    return new Promise((res, rej) => { saveData = mappedData; res({}); })
+                })
+                .then(() => { return self.eventPersistence.save(saveData) })
 
 
+            })
+            .catch(error => {
+                logger.error(error);
+            });
+            
+        },15000);
     }
 
     handleGetCall(req, res) {
