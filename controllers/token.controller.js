@@ -63,10 +63,12 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
-        // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
-        //
-        //     console.log(result);
-        // })
+        return new Promise((resolve, reject) => {
+
+            // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
+            //
+            //     console.log(result);
+            // })
             // .on("data", function (transactionHash) {
             //     console.log(transaction);
             //     self.web3.eth.getTransaction(transactionHash)
@@ -75,38 +77,55 @@ class TokenController {
             //         });
             // })
 
-        this.tokenContract.getPastEvents("allEvents",{fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+            this.tokenContract.getPastEvents("allEvents", {fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
-            if (err) {
-                console.log(err)
-            }
-            if (data) {
+                if (err) {
+                    console.log(err)
+                }
+                if (data) {
 
-                let transfers = data.filter( (e) => { return e.event === 'Transfer'});
-
-                transfers.forEach( (event) => {
-
-                    console.log('hoe vaak?')
-
-                    self.tokenService.getBlockDate(self.web3,event.blockNumber)
-                    .then( (date) => {
-                        return new Promise((res, rej) => {  event.date = date; res({}); })
-                    })
-                    .then( () => {
-                        return self.eventDefinition.getMapping(event);
-                    })
-                    .then((mappedData) => {
-
-                        let eventPersistence = new EventPersistence();
-                        return eventPersistence.save(mappedData)
-
-                    })
-                    .catch(error => {
-                        logger.error(error);
+                    let transfers = data.filter((e) => {
+                        return e.event === 'Transfer'
                     });
-                });
-            }
+
+                    Promise.each(transfers, (transfer, i) => {
+                        return self._storeEvent(transfer);
+                    })
+                        .then(() => {
+                            logger.info('saved all events');
+                            resolve({});
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+            });
         });
+    }
+
+    _storeEvent(event) {
+
+        let self = this;
+
+        console.log('hoe vaak?')
+
+        self.tokenService.getBlockDate(self.web3,event.blockNumber)
+            .then( (date) => {
+                return new Promise((res, rej) => {  event.date = date; res({}); })
+            })
+            .then( () => {
+                return self.eventDefinition.getMapping(event);
+            })
+            .then((mappedData) => {
+
+                let eventPersistence = new EventPersistence();
+                return eventPersistence.save(mappedData)
+
+            })
+            .catch(error => {
+                logger.error(error);
+            });
+
     }
 
     handleGetCall(req, res) {
