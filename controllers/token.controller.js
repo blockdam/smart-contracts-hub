@@ -76,8 +76,7 @@ class TokenController {
             // })
 
         this.tokenContract.getPastEvents("allEvents",{fromBlock: 0, toBlock: 'latest'}, function (err, data) {
-
-
+            
             if (err) {
                 console.log(err)
             }
@@ -87,19 +86,18 @@ class TokenController {
 
                 transfers.forEach( (event) => {
 
-                            self.tokenService.getBlockDate(self.web3,event.blockNumber)
-                            .then( (date) => {
-                                return new Promise((res, rej) => {  event.date = date; res({}); })
-                            })
-                            .then( () => {
-                                return self.eventDefinition.getMapping(event);
-                            })
-                            .then((mappedData) => { console.log('yoyo'); return self.eventPersistence.save(mappedData) })
-                            .catch(error => {
-                                logger.error(error);
-                            });
-                        });
-
+                    self.tokenService.getBlockDate(self.web3,event.blockNumber)
+                    .then( (date) => {
+                        return new Promise((res, rej) => {  event.date = date; res({}); })
+                    })
+                    .then( () => {
+                        return self.eventDefinition.getMapping(event);
+                    })
+                    .then((mappedData) => { console.log('yoyo'); return self.eventPersistence.save(mappedData) })
+                    .catch(error => {
+                        logger.error(error);
+                    });
+                });
             }
         });
     }
