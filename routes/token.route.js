@@ -14,8 +14,8 @@ let getBalanceHistory = tokenCtrl.getBalanceHistory(tokenCtrl);
 router.route('/events')
     .get(getEvents);
 
-router.route('/balance')
-    .get(getBalanceHistory);
+// router.route('/balance')
+//     .get(getBalanceHistory);
 
 
 module.exports = router;
