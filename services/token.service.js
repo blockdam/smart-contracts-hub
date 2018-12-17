@@ -33,10 +33,7 @@ class TokenService {
 
     calcBalanceHistory(transfers) {
 
-        return new Promise((resolve, reject) => {
-
             let totalGrants = 0;
-            let ethValue = 0;
             let history = [];
 
             transfers.forEach((transfer) => {
@@ -62,8 +59,7 @@ class TokenService {
                 history.push(balance);
             });
 
-            resolve(history);
-        });
+            return history;
     }
 
 }
