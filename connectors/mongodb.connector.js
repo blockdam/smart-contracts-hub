@@ -11,13 +11,16 @@ let database = null;
 
 // get connection to mongodb
 function getMongoConnection() {
-    if(database === null) {
-        MongoClient.connect('mongodb://localhost:27017', (err, client) => {
-            // Client returned
-            database = client.db('blockdam');
-            return database;
-        });
-    }
+
+    return new Promise((resolve, reject) => {
+
+        if (database === null) {
+            MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+                database = client.db('blockdam');
+                resolve(database);
+            });
+        }
+    });
 }
 
 module.exports = {
