@@ -93,6 +93,8 @@ class TokenController {
 
             self.eventList.forEach( (event) => {
 
+                logger.info('ko');
+
                 self.eventDefinition.getMapping(event)
                 .then((mappedData) => {
                     return new Promise((res, rej) => { saveData = mappedData; res({}); })
