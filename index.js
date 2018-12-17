@@ -10,15 +10,13 @@ app.listen(appConfig.port, () => {
 
     let tokenCtrl = new TokenController();
 
-    let token = new cronJob('1 * * * * *', function(){
-        tokenCtrl.recordState();
-    }, null, false);
-
-
+    // let token = new cronJob('1 * * * * *', function(){
+    //     tokenCtrl.recordEvents();
+    // }, null, false);
 
     tokenCtrl.init().then( () => {
-       // token.start();
-        tokenCtrl.recordState();
+         tokenCtrl.recordEvents();
+       // tokenCtrl.getPastEvents();
     })
     .catch(error => {
         logger.error(error);

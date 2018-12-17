@@ -16,7 +16,7 @@ function getMongoConnection() {
 
         if (database === null) {
             MongoClient.connect('mongodb://localhost:27017', { promiseLibrary: Promise, poolSize: 10, useNewUrlParser: true }, (err, client) => {
-                database = client.db('blockdam');
+                database = client.db(config.db);
                 resolve(database);
             });
         } else {
@@ -24,13 +24,6 @@ function getMongoConnection() {
         }
     });
 }
-
-// function getMongoConnection() {
-//     if(database === null) {
-//         database =  MongoClient.connect('mongodb://localhost:27017/blockdam', { promiseLibrary: Promise, poolSize: 10, useNewUrlParser: true });
-//     }
-//     return database;
-// }
 
 module.exports = {
     getEventsCollection: function() {
