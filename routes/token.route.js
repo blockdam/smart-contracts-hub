@@ -6,7 +6,7 @@ let express = require('express'),
 const router = express.Router();
 
 
-const ctrl = new tokenCtrl(); // create instance of instagram controller
+const tokenCtrl = new tokenCtrl(); // create instance of instagram controller
  // save instance of blog controller
 let get = tokenCtrl.handleGetCall.bind(tokenCtrl);
 // bind blog controller context to this in save function
