@@ -72,7 +72,7 @@ class EventPersistence {
                 .then( (result) => {
 
                     if (typeof result === 'object' && result !== null) {
-                        return collection.updateOne({ '_id' : data._id},data);
+                        return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true });
                             logger.info('updated event in database');
                     } else {
                         console.log('joera');
