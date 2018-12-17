@@ -83,6 +83,7 @@ class TokenController {
             }
             if (data) {
 
+                console.log('1');
                 self.eventList.push(data);
             }
         });
@@ -90,6 +91,8 @@ class TokenController {
         setTimeout( function() {
 
             let saveData = null;
+
+            console.log('2');
 
             self.eventList.forEach( (event) => {
 
