@@ -94,7 +94,7 @@ class TokenController {
                             .then( () => {
                                 return self.eventDefinition.getMapping(event);
                             })
-                            .then((mappedData) => { return self.eventPersistence.save(mappedData) })
+                            .then((mappedData) => { console.log('yoyo'); return self.eventPersistence.save(mappedData) })
                             .catch(error => {
                                 logger.error(error);
                             });

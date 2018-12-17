@@ -63,10 +63,19 @@ class EventPersistence {
      */
     save(data, correlationId, options) {
         const self = this;
+        let collection = null;
         return new Promise((resolve, reject) => {
 
             db.getEventsCollection()
-                .then((collection) => { return collection.insertOne(data); }) // execute save
+                .then((coll) => { return new Promise((res, rej) => {  collection = coll; res({}); })
+                .then(() => { return collection.findOne({ _id : data._id}); })
+                .then((exists) => {
+                    if(exists) {
+                        return collection.updateOne(data);
+                    } else {
+                        return collection.insertOne(data);
+                    }
+                })
                 .then((d) => {
                     logger.info('Saved event to database', correlationId);
                     resolve(data);
