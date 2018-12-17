@@ -20,7 +20,7 @@ function getMongoConnection() {
 module.exports = {
     getEventsCollection: function() {
         return getMongoConnection().then((conn) => {
-            return conn.collection('token_events');
+            return conn.collection('bcdTokenEvents');
         })
     }
 };
