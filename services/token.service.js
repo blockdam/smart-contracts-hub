@@ -18,11 +18,11 @@ class TokenService {
 
     }
 
-    getBlockDate(blocknr) {
+    getBlockDate(web3,blockNumber) {
 
         return new Promise((res, rej) => {
 
-            web3.eth.getBlock(t.blockNumber, function (err, data) {
+            web3.eth.getBlock(blockNumber, function (err, data) {
                 if (err) {
                     console.log(err)
                     rej(err)

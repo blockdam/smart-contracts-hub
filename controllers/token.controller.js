@@ -96,7 +96,7 @@ class TokenController {
                             let saveData = null;
 
                             console.log('hi');
-                            self.tokenService.getBlockDate()
+                            self.tokenService.getBlockDate(self.web3,event.blockNumber)
                             .then( (date) => {
                                 return new Promise((res, rej) => {  event.date = date; res({}); })
                             })
@@ -110,8 +110,6 @@ class TokenController {
                             .catch(error => {
                                 logger.error(error);
                             });
-
-
                         });
 
             }
