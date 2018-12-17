@@ -26,7 +26,6 @@ function getMongoConnection() {
 module.exports = {
     getEventsCollection: function() {
         return getMongoConnection().then((conn) => {
-            console.log(conn);
             return conn.collection('bcdTokenEvents');
         })
     }

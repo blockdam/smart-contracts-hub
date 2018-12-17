@@ -65,13 +65,8 @@ class EventPersistence {
         const self = this;
         return new Promise((resolve, reject) => {
 
-            // data._id = String(data.id); // make sure id is a string
-            // data.objectID = String(data.objectID); // make sure objectID is a string
-
-            // data.date = moment(data.created_at).format('YYYY-MM-DD HH:mm:ss');
-
             db.getEventsCollection()
-                .then((collection) => { return collection.save(data); }) // execute save
+                .then((collection) => { return collection.insertOne(data); }) // execute save
                 .then((d) => {
                     logger.info('Saved event to database', correlationId);
                     resolve(data);
