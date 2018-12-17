@@ -70,26 +70,11 @@ class EventPersistence {
                 .then( (coll) => {
                     return new Promise((res, rej) => {  console.log('hoe vaak?'); collection = coll; res({}); })
                 })
-                .then( () => { return collection.findOne({ '_id' : data._id}); })
-                .then( (result) => {
-                    logger.info('hallo');
-
-                    if (typeof result === 'object' && result !== null) {
-                        return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true });
-                        logger.info('updated event in database');
-                    } else {
-                        console.log('joera');
-                        console.log(data);
-                        return collection.insertOne(data);
-                        logger.info('saved event to database');
-                    }
-                })
+                .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then(() => {
-
                     resolve();
                 })
                 .catch((error) => {
-                    // error.correlationId = correlationId;
                     reject(error);
                 });
         });
