@@ -139,7 +139,7 @@ class TokenController {
 
         self.eventPersistence.find(options)
         .then( (results) => {
-            res.status(200).send('werkt');
+            res.status(200).send(results);
         });
 
     }
