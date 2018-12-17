@@ -30,7 +30,7 @@ class TokenService {
                 if (data) {
 
                     let date = new Date(data.timestamp * 1000);
-                    console.log(val + ' ' + date.toJSON());
+                    console.log(date.toJSON());
                     res(date);
                 }
             });
