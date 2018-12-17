@@ -5,6 +5,7 @@ const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const config = require('../config');
 const fs = require('graceful-fs');
+const WebSocket = require('ws');
 
 class TokenController {
 
@@ -13,6 +14,21 @@ class TokenController {
 
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
 
+        this.startWs();
+
+    }
+
+    startWs () {
+
+        const wss = new WebSocket.Server({ port: 3636 });
+
+        wss.on('connection', function connection(ws) {
+            ws.on('message', function incoming(message) {
+                console.log('received: %s', message);
+            });
+
+            ws.send('something');
+        });
     }
 
     init() {
@@ -40,6 +56,8 @@ class TokenController {
         // fire with cron job
         // get new  Events (since blocknr)
         // store in mongo
+
+        // ho ho ..je kan aan events subscriben
 
         console.log('yo');
 
