@@ -20,7 +20,15 @@ class EventDefinition {
 
         return new Promise((resolve, reject) => {
 
-            logger.info(data);
+
+
+            event.transactionHash = data.transactionHash;
+            event.blockNumber = data.blockNumber;
+            event.from = data.returnValues[0].from;
+            event.to  = data.returnValues[0].to;
+            event.value = data.returnValues[0].value;
+
+            logger.info(event);
 
             const event = data;
 

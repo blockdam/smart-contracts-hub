@@ -95,6 +95,8 @@ class TokenController {
 
                             let saveData = null;
 
+                            console.log('hi');
+
                             self.eventDefinition.getMapping(event)
                             .then((mappedData) => {
                                 return new Promise((res, rej) => { saveData = mappedData; res({}); })
