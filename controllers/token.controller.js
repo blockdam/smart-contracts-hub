@@ -152,19 +152,17 @@ class TokenController {
             query : {}
         };
 
-        res.status(200).send(JSON.stringify(history));
+        self.eventPersistence.find(options)
+            .then( (results) => {
 
-        // self.eventPersistence.find(options)
-        //     .then( (results) => {
-        //
-        //         history = self.tokenService.calcBalanceHistory(results);
-        //         res.setHeader('Content-Type', 'application/json');
-        //         res.status(200).send(JSON.stringify(history));
-        //
-        //     })
-        //     .catch( (err) =>{
-        //         res.status(500).send(JSON.stringify(err));
-        //     });
+                history = self.tokenService.calcBalanceHistory(results);
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(history));
+
+            })
+            .catch( (err) =>{
+                res.status(500).send(JSON.stringify(err));
+            });
 
     }
 
