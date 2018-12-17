@@ -79,41 +79,33 @@ class TokenController {
 
         this.tokenContract.getPastEvents("allEvents",{fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
-            console.log('4');
+
             if (err) {
                 console.log(err)
             }
             if (data) {
 
-                console.log('1');
-                self.eventList.push(data);
+                console.log(data.length);
+
+                data.forEach( (event) => {
+
+                            logger.info('ko');
+                            let saveData = null;
+
+                            self.eventDefinition.getMapping(event)
+                            .then((mappedData) => {
+                                return new Promise((res, rej) => { saveData = mappedData; res({}); })
+                            })
+                            .then(() => { return self.eventPersistence.save(saveData) })
+                            .catch(error => {
+                                logger.error(error);
+                            });
+
+
+                        });
+
             }
         });
-
-            // setTimeout( function() {
-            //
-            //     let saveData = null;
-            //
-            //     console.log('2');
-            //
-            //     self.eventList.forEach( (event) => {
-            //
-            //         logger.info('ko');
-            //
-            //         self.eventDefinition.getMapping(event)
-            //         .then((mappedData) => {
-            //             return new Promise((res, rej) => { saveData = mappedData; res({}); })
-            //         })
-            //         .then(() => { return self.eventPersistence.save(saveData) })
-            //         .catch(error => {
-            //             logger.error(error);
-            //         });
-            //
-            //
-            //     })
-            //
-            //
-            // },15000);
     }
 
     handleGetCall(req, res) {
