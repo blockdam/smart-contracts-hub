@@ -14,14 +14,14 @@ let getBalanceHistory = tokenCtrl.getBalanceHistory(tokenCtrl);
 //     del = pageCtrl.handleDeleteCall.bind(pageCtrl), // bind blog controller context to this in update function
 //     preview = pageCtrl.handlePreviewCall.bind(pageCtrl);
 
-let eventRoutes = router.route('/')
+// CRUD routes
+router.route('/')
     .get(getEvents)
-let balanceRoutes = router.route('/')
+
+router.route('/balance')
     .get(getBalanceHistory)
-
-
-router.use('/events',eventRoutes)
-router.use('/balance',balanceRoutes)
-
+ //   .get(ctrl.getState)
+// .put(update)
+// .delete(del);
 
 module.exports = router;
