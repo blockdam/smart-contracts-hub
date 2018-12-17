@@ -88,7 +88,7 @@ class TokenController {
         });
 
         setTimeout( function() {
-            
+
             let saveData = null;
 
             self.eventList.forEach( (event) => {
@@ -98,12 +98,13 @@ class TokenController {
                     return new Promise((res, rej) => { saveData = mappedData; res({}); })
                 })
                 .then(() => { return self.eventPersistence.save(saveData) })
+                .catch(error => {
+                    logger.error(error);
+                });
 
 
             })
-            .catch(error => {
-                logger.error(error);
-            });
+
 
         },15000);
     }
