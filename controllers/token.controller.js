@@ -88,8 +88,7 @@ class TokenController {
         });
 
         setTimeout( function() {
-
-            let self = this;
+            
             let saveData = null;
 
             self.eventList.forEach( (event) => {
