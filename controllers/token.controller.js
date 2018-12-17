@@ -117,10 +117,8 @@ class TokenController {
                 return self.eventDefinition.getMapping(event);
             })
             .then((mappedData) => {
-                console.log('hoe vaak?')
                 let eventPersistence = new EventPersistence();
                 return eventPersistence.save(mappedData)
-
             })
             .catch(error => {
                 logger.error(error);
