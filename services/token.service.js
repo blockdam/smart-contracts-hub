@@ -31,6 +31,12 @@ class TokenService {
         });
     }
 
+    getEvents() {
+
+
+
+    }
+
 }
 
 

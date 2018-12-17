@@ -29,14 +29,14 @@ class EventPersistence {
         };
         return new Promise((resolve, reject) => {
             db.getEventsCollection() // get page collection
-                .then((collection) => { return collection.find(options.query).sort({'created_at' : -1}).limit(options.limit).toArray(); }) // execute find query
+                .then((collection) => { return collection.find(options.query).sort({'date' : -1}).limit(options.limit).toArray(); }) // execute find query
                 .then((result) => {
-                    result.forEach( i => {
-                        i.id = i._id;
-                    });
+                    // result.forEach( i => {
+                    //     i.id = i._id;
+                    // });
                     resolve(result);
 
-                }) // return results
+                })
         })
     }
 

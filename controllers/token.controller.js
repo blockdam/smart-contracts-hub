@@ -16,7 +16,7 @@ class TokenController {
     constructor () {
 
         this.tokenService = new TokenService();
-
+        this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.wss = null;
@@ -82,18 +82,6 @@ class TokenController {
 
         return new Promise((resolve, reject) => {
 
-            // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
-            //
-            //     console.log(result);
-            // })
-            // .on("data", function (transactionHash) {
-            //     console.log(transaction);
-            //     self.web3.eth.getTransaction(transactionHash)
-            //         .then(function (transaction) {
-            //             console.log(transaction);
-            //         });
-            // })
-
             this.tokenContract.getPastEvents("allEvents", {fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
                 if (err) {
@@ -124,8 +112,6 @@ class TokenController {
 
         let self = this;
 
-
-
         self.tokenService.getBlockDate(self.web3,event.blockNumber)
             .then( (date) => {
                 return new Promise((res, rej) => {  event.date = date; res({}); })
@@ -134,56 +120,26 @@ class TokenController {
                 return self.eventDefinition.getMapping(event);
             })
             .then((mappedData) => {
-                let eventPersistence = new EventPersistence();
-                return eventPersistence.save(mappedData)
+                return self.eventPersistence.save(mappedData)
             })
             .catch(error => {
                 logger.error(error);
             });
-
     }
 
     handleGetCall(req, res) {
 
-        // if (req.body) {
-        //
-        //     let feed = req.body;
-        //
-        //     switch (feed.type) {
-        //         case 'facebook':
-        //             facebookService.getFeed(feed)
-        //                 .then(response => {
-        //                     let socials = response.data;
-        //                     let mappedArray = [];
-        //                     for (let i in socials) {
-        //                         let social = socials[i];
-        //                         let mappedSocial = mappingService.mapFacebookSocial(social);
-        //                         mappedArray.push(mappedSocial);
-        //                     }
-        //                     console.log(mappedArray);
-        //
-        //                     res.send(mappedArray)
-        //                 })
-        //                 .catch(function(error) {
-        //                     console.log(error);
-        //                     if(error.response.error.code === 'ETIMEDOUT') {
-        //                         console.log('request timeout');
-        //                     } else {
-        //                         res.status(500).send(error);
-        //                     }
-        //                 });
-        //             break;
-        //         case 'instagram':
-        //             console.log('insta');
-        //             break;
-        //         case 'twitter':
-        //             console.log('twitter');
-        //     }
-        // } else {
-        //     res.status(500).send('No feeds found');
-        // }
+        let self = this;
 
-        res.status(200).send('werkt');
+        let options  = {
+    
+        }
+
+        self.eventPersistence.find(options)
+
+        .then( (results) => {
+            res.status(200).send('werkt');
+        });
 
     }
 
