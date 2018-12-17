@@ -67,19 +67,19 @@ class EventPersistence {
         return new Promise((resolve, reject) => {
 
             db.getEventsCollection()
-                // .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); })
-                // .then( () => { return collection.findOne({ '_id' : data._id}); })
-                // .then( (exists) => {
-                //     if (exists) {
-                //         return collection.updateOne(data);
-                //     } else {
-                //         return collection.insertOne(data);
-                //     }
-                // })
-                // .then(() => {
-                //     logger.info('Saved event to database');
-                //     resolve();
-                // })
+                .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); }) })
+                .then( () => { return collection.findOne({ '_id' : data._id}); })
+                .then( (exists) => {
+                    if (exists) {
+                        return collection.updateOne(data);
+                    } else {
+                        return collection.insertOne(data);
+                    }
+                })
+                .then(() => {
+                    logger.info('Saved event to database');
+                    resolve();
+                })
                 .catch((error) => {
                     // error.correlationId = correlationId;
                     reject(error);
