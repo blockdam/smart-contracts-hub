@@ -2,6 +2,7 @@ const app = require('./express'),
     appConfig = require('./config/index'),
     TokenController = require('./controllers/token.controller'),
     WebSocket = require('ws'),
+    logger = require('./services/logger.service'),
     cronJob = require('cron').CronJob;
 
 // listen on port appConfig.port
