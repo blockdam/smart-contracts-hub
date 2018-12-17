@@ -8,7 +8,7 @@ const router = express.Router();
 let tokenCtrl = new TokenCtrl();
 
 let getEvents = tokenCtrl.getEvents.bind(tokenCtrl);
-let getBalanceHistory = tokenCtrl.getBalanceHistory(tokenCtrl);
+let getBalanceHistory = tokenCtrl.getBalanceHistory.bind(tokenCtrl);
 
 
 router.route('/events')
