@@ -42,17 +42,17 @@ class TokenService {
             transfers.forEach((transfer) => {
 
                 let balance = {};
-                balance.date = event.date;
+                balance.date = transfer.date;
                 balance.granted = 0;
                 balance.sold = 0;
 
                 if (transfer.from === '0x0000000000000000000000000000000000000000') {
 
-                    balance.granted = event.value / 1000000000000000000;
+                    balance.granted = transfer.value / 1000000000000000000;
 
                 } else if (transfer.to === '0x0000000000000000000000000000000000000000') {
 
-                    balance.sold = event.value / 1000000000000000000;
+                    balance.sold = transfer.value / 1000000000000000000;
                 }
 
                 totalGrants = totalGrants - balance.sold + balance.granted;
