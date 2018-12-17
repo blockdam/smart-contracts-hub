@@ -131,7 +131,7 @@ class TokenController {
 
         let self = this;
 
-        let options = {]
+        let options = {
             query : {}
         };
 
