@@ -20,7 +20,7 @@ class TokenController {
 
     startWs () {
 
-        const wss = new WebSocket.Server({ port: 3636 });
+        const wss = new WebSocket.Server({ port: 3738 });
 
         wss.on('connection', function connection(ws) {
             ws.on('message', function incoming(message) {
