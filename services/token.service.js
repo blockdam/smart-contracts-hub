@@ -37,7 +37,7 @@ class TokenService {
 
             let totalGrants = 0;
             let ethValue = 0;
-            let history = []
+            let history = [];
 
             transfers.forEach((transfer) => {
 
