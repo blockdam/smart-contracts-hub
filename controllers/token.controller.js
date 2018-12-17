@@ -61,13 +61,7 @@ class TokenController {
     recordState() {
 
         let self = this;
-        self.eventList.push(data);
-
-        // fire with cron job
-        // get new  Events (since blocknr)
-        // store in mongo
-
-        // ho ho ..je kan aan events subscriben
+        self.eventList = [];
 
         console.log('yo');
 
@@ -111,7 +105,7 @@ class TokenController {
             .catch(error => {
                 logger.error(error);
             });
-            
+
         },15000);
     }
 

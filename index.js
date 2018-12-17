@@ -14,8 +14,11 @@ app.listen(appConfig.port, () => {
         tokenCtrl.recordState();
     }, null, false);
 
+
+
     tokenCtrl.init().then( () => {
-        token.start();
+       // token.start();
+        tokenCtrl.recordState();
     })
     .catch(error => {
         logger.error(error);
