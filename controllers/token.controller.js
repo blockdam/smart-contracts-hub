@@ -64,13 +64,17 @@ class TokenController {
 
         console.log('yo');
 
-        let subscription = self.web3.eth.subscribe('pendingTransactions', function (error, result) {})
-            .on("data", function (transactionHash) {
-                self.web3.eth.getTransaction(transactionHash)
-                    .then(function (transaction) {
-                        console.log(transaction);
-                    });
-            })
+        let subscription = self.web3.eth.subscribe('logs', function (error, result) {
+
+            console.log(result);
+        })
+            // .on("data", function (transactionHash) {
+            //     console.log(transaction);
+            //     self.web3.eth.getTransaction(transactionHash)
+            //         .then(function (transaction) {
+            //             console.log(transaction);
+            //         });
+            // })
 
         // this.tokenContract.events.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
         //     if (err) {
