@@ -23,7 +23,9 @@ class EventDefinition {
 
             let event = {};
 
+            event._id = data.transactionHash;
             event.transactionHash = data.transactionHash;
+            event.date = data.date;
             event.blockNumber = data.blockNumber;
             event.from = data.returnValues.from;
             event.to  = data.returnValues.to;

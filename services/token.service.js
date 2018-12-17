@@ -18,6 +18,25 @@ class TokenService {
 
     }
 
+    getBlockDate(blocknr) {
+
+        return new Promise((res, rej) => {
+
+            web3.eth.getBlock(t.blockNumber, function (err, data) {
+                if (err) {
+                    console.log(err)
+                    rej(err)
+                }
+                if (data) {
+
+                    let date = new Date(data.timestamp * 1000);
+                    console.log(val + ' ' + date.toJSON());
+                    res(date);
+                }
+            });
+        });
+    }
+
 }
 
 
