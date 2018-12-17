@@ -17,7 +17,7 @@ function get(network) {
 
         if (network === 'rinkeby') {
             web3 = new Web3(
-                new Web3.providers.HttpProvider('wss://ropsten.infura.io/ws') // 'https://rinkeby.infura.io/
+                new Web3.providers.HttpProvider('wss://rinkeby.infura.io/ws') // 'https://rinkeby.infura.io/
             );
             resolve(web3);
         }
