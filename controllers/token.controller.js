@@ -87,18 +87,22 @@ class TokenController {
 
                 console.log(data.length);
 
-                data.filter( (e) => { return e.event === 'Transfer'}).forEach( (event) => {
+                let transfers = data.filter( (e) => { return e.event === 'Transfer'});
+
+                console.log(transfers.length);
+
+                transfers.forEach( (event) => {
 
                             let saveData = null;
 
-                            self.eventDefinition.getMapping(event)
-                            .then((mappedData) => {
-                                return new Promise((res, rej) => { saveData = mappedData; res({}); })
-                            })
-                            .then(() => { return self.eventPersistence.save(saveData) })
-                            .catch(error => {
-                                logger.error(error);
-                            });
+                            // self.eventDefinition.getMapping(event)
+                            // .then((mappedData) => {
+                            //     return new Promise((res, rej) => { saveData = mappedData; res({}); })
+                            // })
+                            // .then(() => { return self.eventPersistence.save(saveData) })
+                            // .catch(error => {
+                            //     logger.error(error);
+                            // });
 
 
                         });
