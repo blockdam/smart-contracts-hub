@@ -62,17 +62,17 @@ class TokenController {
 
         let self = this;
 
-        let subscription = self.web3.eth.subscribe('logs', function (error, result) {
-
-            console.log(result);
-        })
-        .on("data", function (transactionHash) {
-            console.log(transaction);
-            self.web3.eth.getTransaction(transactionHash)
-                .then(function (transaction) {
-                    console.log(transaction);
-                });
-        });
+        // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
+        //
+        //     console.log(result);
+        // })
+        // .on("data", function (transactionHash) {
+        //     console.log(transaction);
+        //     self.web3.eth.getTransaction(transactionHash)
+        //         .then(function (transaction) {
+        //             console.log(transaction);
+        //         });
+        // });
     }
 
     getPastEvents() {
