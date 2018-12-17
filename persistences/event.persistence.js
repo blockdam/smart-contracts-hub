@@ -69,19 +69,20 @@ class EventPersistence {
             db.getEventsCollection()
                 .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); }) })
                 .then( () => { return collection.findOne({ '_id' : data._id}); })
-                .then( (exists) => {
+                .then( (result) => {
 
-                    console.log(exists);
-                    // if (exists) {
-                    //     return collection.updateOne(data);
-                    // } else {
-                    //     console.log('joera');
-                    //     console.log(data);
-                    //     return collection.insertOne(data);
-                    // }
+                    if (typeof result === 'object' && result !== null) {
+                        return collection.updateOne(data);
+                            logger.info('updated event in database');
+                    } else {
+                        console.log('joera');
+                        console.log(data);
+                        return collection.insertOne(data);
+                        logger.info('saved event to database');
+                    }
                 })
                 .then(() => {
-                    logger.info('Saved event to database');
+
                     resolve();
                 })
                 .catch((error) => {
