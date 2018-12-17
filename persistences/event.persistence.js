@@ -67,7 +67,7 @@ class EventPersistence {
         return new Promise((resolve, reject) => {
 
             db.getEventsCollection()
-                .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); })
+                // .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); })
                 // .then( () => { return collection.findOne({ '_id' : data._id}); })
                 // .then( (exists) => {
                 //     if (exists) {
