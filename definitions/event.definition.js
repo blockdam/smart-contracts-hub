@@ -6,10 +6,6 @@ const db = require('../connectors/mongodb.connector');
 const config = require('../config');
 const moment = require('moment');
 
-
-/**
- * Class takes care of all database operations for the page
- */
 class EventDefinition {
 
     constructor() {

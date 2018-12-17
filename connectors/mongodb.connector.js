@@ -14,13 +14,14 @@ function getMongoConnection() {
     if(database === null) {
         database =  MongoClient.connect(config.db, { promiseLibrary: Promise, poolSize: 10 })
     }
-    console.log(database);
+
     return database;
 }
 
 module.exports = {
     getEventsCollection: function() {
         return getMongoConnection().then((conn) => {
+            console.log(conn);
             return conn.collection('bcdTokenEvents');
         })
     }

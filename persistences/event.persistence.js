@@ -70,7 +70,7 @@ class EventPersistence {
 
             // data.date = moment(data.created_at).format('YYYY-MM-DD HH:mm:ss');
 
-            db.getEventsCollection() // get page collection
+            db.getEventsCollection()
                 .then((collection) => { return collection.save(data); }) // execute save
                 .then((d) => {
                     logger.info('Saved event to database', correlationId);
