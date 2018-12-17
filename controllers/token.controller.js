@@ -63,7 +63,7 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
-        console.log('yo');
+        console.log(self.tokenContract);
 
         // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
         //
@@ -78,6 +78,8 @@ class TokenController {
             // })
 
         this.tokenContract.events.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+
+            console.log('4');
             if (err) {
                 console.log(err)
             }
