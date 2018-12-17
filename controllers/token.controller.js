@@ -131,12 +131,11 @@ class TokenController {
 
         let self = this;
 
-        let options  = {
+        let options = {};
 
-        };
+        console.log(self);
 
         self.eventPersistence.find(options)
-
         .then( (results) => {
             res.status(200).send('werkt');
         });
