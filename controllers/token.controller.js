@@ -87,9 +87,8 @@ class TokenController {
 
                 console.log(data.length);
 
-                data.forEach( (event) => {
+                data.filter( (e) => { return e.event === 'Transfer'}).forEach( (event) => {
 
-                            logger.info('ko');
                             let saveData = null;
 
                             self.eventDefinition.getMapping(event)
