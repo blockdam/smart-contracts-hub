@@ -21,6 +21,7 @@ class EventDefinition {
         return new Promise((resolve, reject) => {
 
 
+            let event = {};
 
             event.transactionHash = data.transactionHash;
             event.blockNumber = data.blockNumber;
@@ -29,8 +30,6 @@ class EventDefinition {
             event.value = data.returnValues[0].value;
 
             logger.info(event);
-
-            const event = data;
 
             resolve(event);
 
