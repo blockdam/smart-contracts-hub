@@ -66,11 +66,11 @@ class EventPersistence {
         let collection = null;
         return new Promise((resolve, reject) => {
 
-            console.log('hoe vaak?')
+
 
             db.getEventsCollection()
                 .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); }) })
-                .then( () => { return collection.findOne({ '_id' : data._id}); })
+                .then( () => {     console.log('hoe vaak?'); return collection.findOne({ '_id' : data._id}); })
                 .then( (result) => {
                     logger.info('hallo');
 
