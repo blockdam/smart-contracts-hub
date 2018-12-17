@@ -160,6 +160,9 @@ class TokenController {
             .then( (history) => {
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).send(JSON.stringify(history));
+            })
+            .catch( (err) =>{
+                res.status(500).send(JSON.stringify(err));
             });
 
     }
