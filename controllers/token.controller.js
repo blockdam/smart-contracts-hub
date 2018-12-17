@@ -88,30 +88,30 @@ class TokenController {
             }
         });
 
-        setTimeout( function() {
-
-            let saveData = null;
-
-            console.log('2');
-
-            self.eventList.forEach( (event) => {
-
-                logger.info('ko');
-
-                self.eventDefinition.getMapping(event)
-                .then((mappedData) => {
-                    return new Promise((res, rej) => { saveData = mappedData; res({}); })
-                })
-                .then(() => { return self.eventPersistence.save(saveData) })
-                .catch(error => {
-                    logger.error(error);
-                });
-
-
-            })
-
-
-        },15000);
+            // setTimeout( function() {
+            //
+            //     let saveData = null;
+            //
+            //     console.log('2');
+            //
+            //     self.eventList.forEach( (event) => {
+            //
+            //         logger.info('ko');
+            //
+            //         self.eventDefinition.getMapping(event)
+            //         .then((mappedData) => {
+            //             return new Promise((res, rej) => { saveData = mappedData; res({}); })
+            //         })
+            //         .then(() => { return self.eventPersistence.save(saveData) })
+            //         .catch(error => {
+            //             logger.error(error);
+            //         });
+            //
+            //
+            //     })
+            //
+            //
+            // },15000);
     }
 
     handleGetCall(req, res) {
