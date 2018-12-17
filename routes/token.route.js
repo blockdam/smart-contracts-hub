@@ -7,10 +7,16 @@ const router = express.Router();
 
 
 const ctrl = new tokenCtrl(); // create instance of instagram controller
+ // save instance of blog controller
+let get = tokenCtrl.handleGetCall.bind(tokenCtrl);
+// bind blog controller context to this in save function
+//     update = pageCtrl.handleUpdateCall.bind(pageCtrl), // bind blog controller context to this in update function
+//     del = pageCtrl.handleDeleteCall.bind(pageCtrl), // bind blog controller context to this in update function
+//     preview = pageCtrl.handlePreviewCall.bind(pageCtrl);
 
 // CRUD routes
 router.route('/')
-    .get(ctrl.handleGetCall)
+    .get(get)
  //   .get(ctrl.getState)
 // .put(update)
 // .delete(del);
