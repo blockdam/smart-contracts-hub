@@ -14,7 +14,7 @@ class TokenController {
 
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
 
-        this.startWs();
+        // this.startWs();
 
     }
 
