@@ -12,10 +12,12 @@ let database = null;
 // get connection to mongodb
 function getMongoConnection() {
     if(database === null) {
-        database =  MongoClient.connect(config.db, { promiseLibrary: Promise, poolSize: 10 })
+        MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+            // Client returned
+            database = client.db('blockdam');
+            return database;
+        });
     }
-
-    return database;
 }
 
 module.exports = {
