@@ -70,10 +70,12 @@ class EventPersistence {
                 .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); }) })
                 .then( () => { return collection.findOne({ '_id' : data._id}); })
                 .then( (exists) => {
-                    console.log(exists);
+
                     if (exists) {
                         return collection.updateOne(data);
                     } else {
+                        console.log('joera');
+                        console.log(data);
                         return collection.insertOne(data);
                     }
                 })
