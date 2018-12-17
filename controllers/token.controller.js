@@ -63,8 +63,6 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
-        console.log(self.tokenContract);
-
         // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
         //
         //     console.log(result);
