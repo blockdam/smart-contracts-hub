@@ -145,7 +145,8 @@ class TokenController {
 
     getBalanceHistory(req, res) {
 
-        let self = this;
+        let self = this,
+            history = null;
 
         let options = {
             query : {}
@@ -154,12 +155,10 @@ class TokenController {
         self.eventPersistence.find(options)
             .then( (results) => {
 
-                return self.tokenService.calcBalanceHistory(results);
-
-            })
-            .then( (history) => {
+                history = self.tokenService.calcBalanceHistory(results);
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).send(JSON.stringify(history));
+
             })
             .catch( (err) =>{
                 res.status(500).send(JSON.stringify(err));
