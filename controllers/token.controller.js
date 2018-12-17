@@ -107,7 +107,7 @@ class TokenController {
 
         let self = this;
 
-        console.log('hoe vaak?')
+
 
         self.tokenService.getBlockDate(self.web3,event.blockNumber)
             .then( (date) => {
@@ -117,7 +117,7 @@ class TokenController {
                 return self.eventDefinition.getMapping(event);
             })
             .then((mappedData) => {
-
+                console.log('hoe vaak?')
                 let eventPersistence = new EventPersistence();
                 return eventPersistence.save(mappedData)
 
