@@ -132,8 +132,8 @@ class TokenController {
         let self = this;
 
         let options  = {
-    
-        }
+
+        };
 
         self.eventPersistence.find(options)
 
