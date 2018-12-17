@@ -135,8 +135,6 @@ class TokenController {
             query : {}
         };
 
-        console.log(self);
-
         self.eventPersistence.find(options)
         .then( (results) => {
             res.setHeader('Content-Type', 'application/json');
@@ -152,8 +150,6 @@ class TokenController {
         let options = {
             query : {}
         };
-
-        console.log(self);
 
         self.eventPersistence.find(options)
             .then( (results) => {
