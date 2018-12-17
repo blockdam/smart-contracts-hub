@@ -12,11 +12,6 @@ class TokenService {
 
     constructor() {}
 
-    storeEvents(events) {
-
-
-
-    }
 
     getBlockDate(web3,blockNumber) {
 
@@ -30,7 +25,6 @@ class TokenService {
                 if (data) {
 
                     let date = new Date(data.timestamp * 1000);
-                    console.log(date.toJSON());
                     res(date);
                 }
             });

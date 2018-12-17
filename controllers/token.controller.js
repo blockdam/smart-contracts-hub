@@ -85,17 +85,10 @@ class TokenController {
             }
             if (data) {
 
-                console.log(data.length);
-
                 let transfers = data.filter( (e) => { return e.event === 'Transfer'});
-
-                console.log(transfers.length);
 
                 transfers.forEach( (event) => {
 
-                            let saveData = null;
-
-                            console.log('hi');
                             self.tokenService.getBlockDate(self.web3,event.blockNumber)
                             .then( (date) => {
                                 return new Promise((res, rej) => {  event.date = date; res({}); })
@@ -103,10 +96,7 @@ class TokenController {
                             .then( () => {
                                 return self.eventDefinition.getMapping(event);
                             })
-                            .then((mappedData) => {
-                                return new Promise((res, rej) => { saveData = mappedData; res({}); })
-                            })
-                            // .then(() => { return self.eventPersistence.save(saveData) })
+                            .then(() => { return self.eventPersistence.save(mappedData) })
                             .catch(error => {
                                 logger.error(error);
                             });
