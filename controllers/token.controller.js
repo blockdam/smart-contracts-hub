@@ -127,7 +127,7 @@ class TokenController {
             });
     }
 
-    handleGetCall(req, res) {
+    getEvents(req, res) {
 
         let self = this;
 
