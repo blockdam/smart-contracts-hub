@@ -1,12 +1,11 @@
 'use strict';
 
-let express = require('express'),
-    tokenCtrl = require('../controllers/token.controller');
-
+const express = require('express');
+const TokenCtrl = require('../controllers/token.controller');
 const router = express.Router();
 
 
-const tokenCtrl = new tokenCtrl(); // create instance of instagram controller
+let tokenCtrl = new TokenCtrl();
  // save instance of blog controller
 let get = tokenCtrl.handleGetCall.bind(tokenCtrl);
 // bind blog controller context to this in save function
