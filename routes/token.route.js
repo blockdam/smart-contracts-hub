@@ -11,8 +11,8 @@ let getEvents = tokenCtrl.getEvents.bind(tokenCtrl);
 let getBalanceHistory = tokenCtrl.getBalanceHistory(tokenCtrl);
 
 
-router.route('/events')
-    .get(getEvents);
+// router.route('/events')
+//     .get(getEvents);
 
 router.route('/balance')
     .get(getBalanceHistory);
