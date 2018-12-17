@@ -70,10 +70,11 @@ class EventPersistence {
                 .then( (coll) => { return new Promise((res, rej) => {  collection = coll; res({}); }) })
                 .then( () => { return collection.findOne({ '_id' : data._id}); })
                 .then( (result) => {
+                    logger.info('hallo');
 
                     if (typeof result === 'object' && result !== null) {
                         return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true });
-                            logger.info('updated event in database');
+                        logger.info('updated event in database');
                     } else {
                         console.log('joera');
                         console.log(data);
