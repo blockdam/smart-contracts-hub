@@ -37,6 +37,10 @@ class EventPersistence {
                     resolve(result);
 
                 })
+                .catch( (err) => {
+                    reject(err);
+                })
+
         })
     }
 
