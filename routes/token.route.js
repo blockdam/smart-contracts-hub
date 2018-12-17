@@ -14,9 +14,9 @@ let getBalanceHistory = tokenCtrl.getBalanceHistory(tokenCtrl);
 //     del = pageCtrl.handleDeleteCall.bind(pageCtrl), // bind blog controller context to this in update function
 //     preview = pageCtrl.handlePreviewCall.bind(pageCtrl);
 
-eventRoutes.route('/')
+let eventRoutes = router.route('/')
     .get(getEvents)
-balanceRoutes.route('/')
+let balanceRoutes = router.route('/')
     .get(getBalanceHistory)
 
 
