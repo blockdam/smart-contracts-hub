@@ -68,7 +68,7 @@ class EventPersistence {
 
             db.getEventsCollection()
                 .then( (coll) => {
-                    return new Promise((res, rej) => {  console.log('hoe vaak?'); collection = coll; res({}); })
+                    return new Promise((res, rej) => {  collection = coll; res({}); })
                 })
                 .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then(() => {
