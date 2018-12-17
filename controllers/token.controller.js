@@ -86,6 +86,8 @@ class TokenController {
 
                 transfers.forEach( (event) => {
 
+                    console.log('hoe vaak?')
+
                     self.tokenService.getBlockDate(self.web3,event.blockNumber)
                     .then( (date) => {
                         return new Promise((res, rej) => {  event.date = date; res({}); })
