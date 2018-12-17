@@ -54,6 +54,8 @@ class TokenController {
 
     recordState() {
 
+        let self = this;
+
         // fire with cron job
         // get new  Events (since blocknr)
         // store in mongo
@@ -62,9 +64,9 @@ class TokenController {
 
         console.log('yo');
 
-        let subscription = web3.eth.subscribe('pendingTransactions', function (error, result) {})
+        let subscription = self.web3.eth.subscribe('pendingTransactions', function (error, result) {})
             .on("data", function (transactionHash) {
-                web3.eth.getTransaction(transactionHash)
+                self.web3.eth.getTransaction(transactionHash)
                     .then(function (transaction) {
                         console.log(transaction);
                     });
