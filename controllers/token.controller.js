@@ -77,7 +77,7 @@ class TokenController {
             //         });
             // })
 
-        this.tokenContract.events.allEvents({fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+        this.tokenContract.getPastEvents("allEvents",{fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
             console.log('4');
             if (err) {
