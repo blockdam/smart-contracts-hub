@@ -95,14 +95,14 @@ class TokenController {
 
                             let saveData = null;
 
-                            // self.eventDefinition.getMapping(event)
-                            // .then((mappedData) => {
-                            //     return new Promise((res, rej) => { saveData = mappedData; res({}); })
-                            // })
+                            self.eventDefinition.getMapping(event)
+                            .then((mappedData) => {
+                                return new Promise((res, rej) => { saveData = mappedData; res({}); })
+                            })
                             // .then(() => { return self.eventPersistence.save(saveData) })
                             // .catch(error => {
                             //     logger.error(error);
-                            // });
+                            });
 
 
                         });
