@@ -15,7 +15,7 @@ function getMongoConnection() {
     return new Promise((resolve, reject) => {
 
         if (database === null) {
-            MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+            MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, (err, client) => {
                 database = client.db('blockdam');
                 resolve(database);
             });
