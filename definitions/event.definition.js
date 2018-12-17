@@ -25,7 +25,7 @@ class EventDefinition {
 
             event.transactionHash = data.transactionHash;
             event.blockNumber = data.blockNumber;
-            event.from = data.returnValues[0].from;
+            event.from = data.returnValues;
             event.to  = data.returnValues[0].to;
             event.value = data.returnValues[0].value;
 
