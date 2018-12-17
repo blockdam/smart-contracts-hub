@@ -16,7 +16,7 @@ class TokenController {
     constructor () {
 
         this.tokenService = new TokenService();
-        this.eventPersistence = new EventPersistence();
+
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.wss = null;
@@ -95,7 +95,12 @@ class TokenController {
                     .then( () => {
                         return self.eventDefinition.getMapping(event);
                     })
-                    .then((mappedData) => { return self.eventPersistence.save(mappedData) })
+                    .then((mappedData) => {
+
+                        let eventPersistence = new EventPersistence();
+                        return eventPersistence.save(mappedData)
+
+                    })
                     .catch(error => {
                         logger.error(error);
                     });
