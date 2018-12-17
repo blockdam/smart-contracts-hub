@@ -64,10 +64,10 @@ class TokenController {
 
         console.log('yo');
 
-        let subscription = self.web3.eth.subscribe('logs', function (error, result) {
-
-            console.log(result);
-        })
+        // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
+        //
+        //     console.log(result);
+        // })
             // .on("data", function (transactionHash) {
             //     console.log(transaction);
             //     self.web3.eth.getTransaction(transactionHash)
