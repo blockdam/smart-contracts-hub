@@ -37,14 +37,16 @@ class TokenService {
             let totalGrants = 0;
             let history = [];
 
-            transfers.forEach((transfer) => {
+            transfers.forEach((transfer,i) => {
 
-                let prevBalance = {};
-                prevBalance.date  = moment(transfer.date).subtract(1, 's');
-                prevBalance.totalGrants = totalGrants;
-                prevBalance.ethValue = 5 / totalGrants;
+                if (i > 0) {
+                    let prevBalance = {};
+                    prevBalance.date  = moment(transfer.date).subtract(1, 's');
+                    prevBalance.totalGrants = totalGrants;
+                    prevBalance.ethValue = 5 / totalGrants;
 
-                history.push(prevBalance);
+                    history.push(prevBalance);
+                }
 
                 let balance = {};
                 balance.date = transfer.date;
@@ -66,6 +68,12 @@ class TokenService {
 
                 history.push(balance);
             });
+
+            let currentBalance = {};
+            currentBalance.date  = moment();
+            currentBalance.totalGrants = totalGrants;
+            currentBalance.ethValue = 5 / totalGrants;
+            history.push(currentBalance);
 
             return history;
     }
