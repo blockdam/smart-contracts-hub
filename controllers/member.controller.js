@@ -19,6 +19,15 @@ class MemberController {
 
         let self = this;
 
+        this.memberPersistence.find()
+            .then( (result) => {
+                res.status(200).send(JSON.stringify(result));
+            })
+            .catch( (err) => {
+                logger.info(err);
+                res.status(200).send({});
+            });
+
 
     }
 
