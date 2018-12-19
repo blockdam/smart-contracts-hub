@@ -166,6 +166,23 @@ class TokenController {
 
     }
 
+    getTransactions(req, res) {
+
+        let self = this,
+            options = {
+                query : {
+
+                }
+            };
+
+        self.eventPersistence.find(options)
+            .then( (results) => {
+
+                res.status(200).send(JSON.stringify(results));
+            });
+        
+    }
+
 
 }
 
