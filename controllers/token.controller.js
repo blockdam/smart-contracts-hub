@@ -70,7 +70,6 @@ class TokenController {
         logger.info('kip');
 
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-
             if(error) {
                 logger.info(error);
             } else {
@@ -78,11 +77,11 @@ class TokenController {
             }
         })
         .on("data", function (log) {
-            console.log(log);
-            // self.web3.eth.getTransaction(transactionHash)
-            //     .then(function (transaction) {
-            //         console.log(transaction);
-            //     });
+
+            self.web3.eth.getTransaction(log.transactionHash)
+                .then(function (transaction) {
+                    logger.info(transaction);
+                });
         });
     }
 
