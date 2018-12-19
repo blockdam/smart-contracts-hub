@@ -93,17 +93,20 @@ class TokenController {
                         return e.event === 'Transfer'
                     });
 
+                    logger.info(transfers.length);
+
                     Promise.each(transfers, (transfer, i) => {
+
                         return self._storeEvent(transfer);
                     })
-                        .then(() => {
-                            logger.info('saved all events');
-                            resolve({});
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            reject(error);
-                        });
+                    .then(() => {
+                        logger.info('saved all events');
+                        resolve({});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        reject(error);
+                    });
                 }
             });
         });
