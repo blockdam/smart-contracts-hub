@@ -1,23 +1,23 @@
 'use strict';
 
 let express = require('express'),
-    memberCtrl = require('../controllers/member.controller');
+    MemberController = require('../controllers/member.controller');
 
 const router = express.Router();
 
 
-const ctrl = new memberCtrl(); // create instance of instagram
+const memberController = new MemberController(); // create instance of instagram
 
-let getAll = ctrl.getAll.bind(ctrl);
-let findOne = ctrl.findOne.bind(ctrl);
+let getAll = memberController.getAll.bind(memberController);
+let findOne = memberController.findOne.bind(memberController);
 
 // CRUD routes
 
 router.route('')
-    .get(ctrl.getAll)
+    .get(getAll)
 
 router.route('/:id')
-    .get(ctrl.findOne)
+    .get(findOne)
 // .post(ctrl.getFeed)
 // .put(update)
 // .delete(del);
