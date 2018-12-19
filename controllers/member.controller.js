@@ -41,7 +41,7 @@ class MemberController {
             })
             .catch( (err) => {
                 logger.info(err);
-                res.status(200).send({});
+                res.status(200).send(req.params.id.length);
             });
     }
 
