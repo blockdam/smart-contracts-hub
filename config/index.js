@@ -4,7 +4,7 @@ const config = {
     port: 3737,
     db: 'blockdam',
     addresses : {
-        bcdToken : '0x788A378e7F82e36B3719644e042102d68BF597C7'
+        bcdToken : '0xA2F071aFe85e8F3ec51bD9ae5284Bf53204Df1b9'
     }
 };
 
