@@ -80,7 +80,7 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
-        // return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
 
             self.tokenContract.getPastEvents("allEvents", {fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
@@ -102,10 +102,11 @@ class TokenController {
                         })
                         .catch(error => {
                             console.log(error);
+                            reject(error);
                         });
                 }
             });
-        // });
+        });
     }
 
     _storeEvent(event) {
@@ -195,6 +196,10 @@ class TokenController {
             .then( (results) => {
 
                 res.status(200).send('check');
+            })
+            .catch( (err) => {
+
+                res.status(400);
             });
 
     }
