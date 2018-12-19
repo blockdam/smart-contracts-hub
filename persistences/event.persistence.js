@@ -7,21 +7,10 @@ const config = require('../config');
 const moment = require('moment');
 
 
-/**
- * Class takes care of all database operations for the page
- */
 class EventPersistence {
 
-    constructor() {
+    constructor() {}
 
-    }
-
-
-    /**
-     * Query page collections in MongoDB
-     * @param options
-     * @param correlationId
-     */
     find(options) {
         const self = this;
         if (typeof options.limit === "undefined") {
@@ -31,11 +20,7 @@ class EventPersistence {
             db.getEventsCollection() // get page collection
                 .then((collection) => { return collection.find(options.query).sort({'date' : 1}).limit(options.limit).toArray(); }) // execute find query
                 .then((result) => {
-                    // result.forEach( i => {
-                    //     i.id = i._id;
-                    // });
                     resolve(result);
-
                 })
                 .catch( (err) => {
                     reject(err);
@@ -44,12 +29,6 @@ class EventPersistence {
         })
     }
 
-
-    /**
-     * Query page collection in MongoDb and return single document
-     * @param options
-     * @param correlationId
-     */
     findOne(options, correlationId) {
         const self = this;
         return new Promise((resolve, reject) => {
@@ -59,12 +38,6 @@ class EventPersistence {
         })
     }
 
-
-    /**
-     * Save page to database
-     * @param data
-     * @param correlationId
-     */
     save(data) {
         const self = this;
         let collection = null;
@@ -84,12 +57,6 @@ class EventPersistence {
         });
     }
 
-
-    /**
-     * Delete page from database
-     * @param id                        id of the page
-     * @param correlationId
-     */
     delete(id, correlationId) {
         const self = this;
         return new Promise((resolve, reject) => {
