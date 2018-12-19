@@ -67,6 +67,8 @@ class TokenController {
             address: config.addresses.bcdToken
         };
 
+        logger.info('kip');
+
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
 
             if(error) {
