@@ -14,7 +14,6 @@ let sync = tokenCtrl.sync.bind(tokenCtrl);
 let getBalanceHistory = tokenCtrl.getBalanceHistory.bind(tokenCtrl);
 let getTransactions = tokenCtrl.getTransactions.bind(tokenCtrl);
 
-
 router.route('/events')
     .get(getEvents);
 
