@@ -11,8 +11,7 @@ class MemberController {
 
 
     constructor () {
-
-        this.tokenService = new TokenService();
+        
         this.memberPersistence = new MemberPersistence();
     }
 
