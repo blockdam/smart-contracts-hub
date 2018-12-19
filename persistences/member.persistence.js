@@ -27,10 +27,16 @@ class MemberPersistence {
     }
 
     findOne(id) {
-        const self = this;
+        let self = this,
+            param = 'wpid';
+
+        if(id.length === 40) {
+            param = 'ethAddress';
+        }
+        
         return new Promise((resolve, reject) => {
             db.getMembersCollection() // get page collection
-                .then((collection) => { return collection.findOne({ 'wpid' : id}); }) // execute find query
+                .then((collection) => { return collection.findOne({ param : id}); }) // execute find query
                 .then((result) => { resolve(result);})
                 .catch( (err) => { reject(err); })
         })
