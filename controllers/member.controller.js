@@ -11,7 +11,7 @@ class MemberController {
 
 
     constructor () {
-        
+
         this.memberPersistence = new MemberPersistence();
     }
 

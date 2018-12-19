@@ -6,7 +6,10 @@ let express = require('express'),
 const router = express.Router();
 
 
-const ctrl = new memberCtrl(); // create instance of instagram controller
+const ctrl = new memberCtrl(); // create instance of instagram
+
+let getAll = memberCtrl.getAll.bind(memberCtrl);
+let findOne = memberCtrl.findOne.bind(memberCtrl);
 
 // CRUD routes
 
