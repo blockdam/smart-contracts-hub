@@ -7,7 +7,16 @@ const membersCtrl = () => {
 
         handleGetCall: (req, res) => {
 
-            res.status(200).send('werkt');
+            if (req.params.id) {
+
+                res.status(200).send(req.params.id);
+
+            } else {
+
+                res.status(200).send('werkt');
+
+            }
+
 
         }
 

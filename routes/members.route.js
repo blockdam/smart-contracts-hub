@@ -9,7 +9,7 @@ const router = express.Router();
 const ctrl = membersCtrl(); // create instance of instagram controller
 
 // CRUD routes
-router.route('/')
+router.route('/:id')
 
     .get(ctrl.handleGetCall)
 // .post(ctrl.getFeed)
