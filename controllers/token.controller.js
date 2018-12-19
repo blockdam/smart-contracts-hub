@@ -58,21 +58,26 @@ class TokenController {
         });
     }
 
-    recordEvents() {
+    subscribe() {
 
         let self = this;
 
-        // let subscription = self.web3.eth.subscribe('logs', function (error, result) {
-        //
-        //     console.log(result);
-        // })
-        // .on("data", function (transactionHash) {
-        //     console.log(transaction);
-        //     self.web3.eth.getTransaction(transactionHash)
-        //         .then(function (transaction) {
-        //             console.log(transaction);
-        //         });
-        // });
+        let options = {
+            fromBlock: '0x0',
+            address: config.addresses.bcdToken
+        };
+
+        let subscription = self.web3.eth.subscribe('newBlockHeaders', options, function (error, result) {
+
+            console.log('listening to ' + config.addresses.bcdToken);
+        })
+        .on("data", function (log) {
+            console.log(log);
+            // self.web3.eth.getTransaction(transactionHash)
+            //     .then(function (transaction) {
+            //         console.log(transaction);
+            //     });
+        });
     }
 
     getPastEvents() {
