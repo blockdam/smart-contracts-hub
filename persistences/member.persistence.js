@@ -30,10 +30,10 @@ class MemberPersistence {
         let self = this,
             param = 'wpid';
 
-        if(id.length === 40) {
+        if(id.length === 42) {
             param = 'ethAddress';
         }
-        
+
         return new Promise((resolve, reject) => {
             db.getMembersCollection() // get page collection
                 .then((collection) => { return collection.findOne({ param : id}); }) // execute find query
