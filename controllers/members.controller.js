@@ -5,19 +5,17 @@ const membersCtrl = () => {
 
     return {
 
-        handleGetCall: (req, res) => {
+        getAll: (req, res) => {
+
+            res.status(200).send('werkt');
+        },
+
+        findOne: (req, res) => {
 
             if (req.params.id) {
 
-                res.status(200).send(req.params.id);
-
-            } else {
-
-                res.status(200).send('werkt');
-
+                res.status(200).send('werkt' + req.params.id);
             }
-
-
         }
 
     }
