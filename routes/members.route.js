@@ -1,12 +1,12 @@
 'use strict';
 
 let express = require('express'),
-    membersCtrl = require('../controllers/members.controller');
+    memberCtrl = require('../controllers/member.controller');
 
 const router = express.Router();
 
 
-const ctrl = membersCtrl(); // create instance of instagram controller
+const ctrl = memberCtrl(); // create instance of instagram controller
 
 // CRUD routes
 
