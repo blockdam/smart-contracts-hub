@@ -28,15 +28,21 @@ class MemberPersistence {
 
     findOne(id) {
         let self = this,
-            param = 'wpid';
+        query = {};
 
         if(id.length === 42) {
-            param = 'ethAddress';
+            query = {
+                'ethAddress' : id
+            }
+        } else {
+            query = {
+                'wpid' : id
+            }
         }
 
         return new Promise((resolve, reject) => {
             db.getMembersCollection() // get page collection
-                .then((collection) => { return collection.findOne({ 'wpid' : id}); }) // execute find query
+                .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => { resolve(result);})
                 .catch( (err) => { reject(err); })
         })
