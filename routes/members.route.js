@@ -8,8 +8,8 @@ const router = express.Router();
 
 const ctrl = new memberCtrl(); // create instance of instagram
 
-let getAll = memberCtrl.getAll.bind(memberCtrl);
-let findOne = memberCtrl.findOne.bind(memberCtrl);
+let getAll = ctrl.getAll.bind(ctrl);
+let findOne = ctrl.findOne.bind(ctrl);
 
 // CRUD routes
 
