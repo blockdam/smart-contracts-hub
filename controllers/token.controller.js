@@ -80,7 +80,7 @@ class TokenController {
 
         let self = this;
 
-        this.getPastEvents()
+        self.getPastEvents()
             .then( (results) => {
 
                 res.status(200).send('check');

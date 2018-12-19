@@ -7,6 +7,8 @@ const router = express.Router();
 
 let tokenCtrl = new TokenCtrl();
 
+tokenCtrl.init();
+
 let getEvents = tokenCtrl.getEvents.bind(tokenCtrl);
 let sync = tokenCtrl.sync.bind(tokenCtrl);
 let getBalanceHistory = tokenCtrl.getBalanceHistory.bind(tokenCtrl);
