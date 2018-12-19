@@ -39,7 +39,7 @@ class TokenService {
 
             transfers.forEach((transfer,i) => {
 
-                // we don't eant a gradual line between two balance records in time .. so we make a stub with previous values just before the chnage
+                // we don't want a gradual line between two balance records in time .. so we make a stub with previous values just before the chnage
                 if (i > 0) {
                     let prevBalance = {};
                     prevBalance.date  = moment(transfer.date).subtract(1, 's');
