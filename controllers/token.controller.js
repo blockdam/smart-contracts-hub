@@ -67,7 +67,7 @@ class TokenController {
             address: config.addresses.bcdToken
         };
 
-        let subscription = self.web3.eth.subscribe('newBlockHeaders', options, function (error, result) {
+        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
 
             console.log('listening to ' + config.addresses.bcdToken);
         })
