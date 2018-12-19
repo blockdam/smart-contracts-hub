@@ -16,7 +16,7 @@ app.listen(appConfig.port, () => {
     // }, null, false);
 
     tokenCtrl.init().then( () => {
-         tokenCtrl.recordEvents();
+         tokenCtrl.subscribe();
        // tokenCtrl.getPastEvents();
     })
     .catch(error => {
