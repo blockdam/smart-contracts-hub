@@ -79,8 +79,8 @@ class TokenController {
         .on("data", function (log) {
 
             self.web3.eth.getTransaction(log.transactionHash)
-                .then(function (transaction) {
-                    logger.info(transaction);
+                .then(function (transfer) {
+                    self._storeEvent(transfer);
                 });
         });
     }
@@ -103,10 +103,7 @@ class TokenController {
                         return e.event === 'Transfer'
                     });
 
-                    logger.info(transfers.length);
-
                     Promise.each(transfers, (transfer, i) => {
-
                         return self._storeEvent(transfer);
                     })
                     .then(() => {
