@@ -69,7 +69,11 @@ class TokenController {
 
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
 
-            console.log('listening to ' + config.addresses.bcdToken);
+            if(error) {
+                logger.info(error);
+            } else {
+                logger.info('listening to ' + config.addresses.bcdToken);
+            }
         })
         .on("data", function (log) {
             console.log(log);
