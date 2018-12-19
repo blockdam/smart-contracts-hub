@@ -19,23 +19,6 @@ class TokenController {
         this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
-        this.wss = null;
-
-        // this.startWs();
-
-    }
-
-    startWs () {
-
-        // this.wss = new WebSocket.Server({ port: 8080 });
-
-        // wss.on('connection', function connection(ws) {
-        //     ws.on('message', function incoming(message) {
-        //         console.log('received: %s', message);
-        //     });
-        //
-        //     ws.send('something');
-        // });
     }
 
     init() {
@@ -67,8 +50,6 @@ class TokenController {
             address: config.addresses.bcdToken
         };
 
-        logger.info('kip');
-
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
             if(error) {
                 logger.info(error);
@@ -80,6 +61,7 @@ class TokenController {
 
             self.web3.eth.getTransaction(log.transactionHash)
                 .then(function (transfer) {
+                    transfer.transactionHash = log.transactionHash
                     self._storeEvent(transfer);
                 });
         });
