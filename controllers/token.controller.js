@@ -80,6 +80,7 @@ class TokenController {
 
             self.web3.eth.getTransaction(log.transactionHash)
                 .then(function (transfer) {
+                    console.log(transfer);
                     self._storeEvent(transfer);
                 });
         });
@@ -92,7 +93,12 @@ class TokenController {
 
         return new Promise((resolve, reject) => {
 
-            self.tokenContract.getPastEvents("allEvents", {fromBlock: 0, toBlock: 'latest'}, function (err, data) {
+            let options = {
+                fromBlock: 0,
+                toBlock: 'latest'
+            };
+
+            self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                 if (err) {
                     console.log(err)
