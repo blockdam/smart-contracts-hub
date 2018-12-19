@@ -22,9 +22,9 @@ class EventDefinition {
             event.transactionHash = data.transactionHash;
             event.date = data.date;
             event.blockNumber = data.blockNumber;
-            event.from = data.returnValues.from;
-            event.to  = data.returnValues.to;
-            event.value = data.returnValues.value;
+            event.from = data.returnValues.from || data.from;
+            event.to  = data.returnValues.to || data.to;
+            event.value = data.returnValues.value || data.v;
 
             resolve(event);
 
