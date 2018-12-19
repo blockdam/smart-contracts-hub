@@ -37,11 +37,11 @@ class MemberController {
 
         this.memberPersistence.findOne(req.params.id)
             .then( (result) => {
-                res.status(200).send(req.params.id.length);
+                res.status(200).send(JSON.stringify(result));
             })
             .catch( (err) => {
                 logger.info(err);
-                res.status(200).send(req.params.id.length);
+                res.status(200).send({});
             });
     }
 
