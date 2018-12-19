@@ -80,7 +80,6 @@ class TokenController {
 
             self.web3.eth.getTransaction(log.transactionHash)
                 .then(function (transfer) {
-                    console.log(transfer);
                     self._storeEvent(transfer);
                 });
         });
