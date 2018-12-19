@@ -37,7 +37,7 @@ class MemberController {
 
         this.memberPersistence.findOne(req.params.id)
             .then( (result) => {
-                res.status(200).send(JSON.stringify(result));
+                res.status(200).send(JSON.stringify(req.params.id.length));
             })
             .catch( (err) => {
                 logger.info(err);
