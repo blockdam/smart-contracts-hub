@@ -149,7 +149,12 @@ class TokenController {
             history = null;
 
         let options = {
-            query : {}
+            query : {
+                $and: [
+                    { 'to': { $ne: '0x0000000000000000000000000000000000000000' } },
+                    { 'from': { $ne: '0x0000000000000000000000000000000000000000'} }
+                ]
+            }
         };
 
         self.eventPersistence.find(options)
@@ -180,7 +185,7 @@ class TokenController {
 
                 res.status(200).send(JSON.stringify(results));
             });
-        
+
     }
 
 
