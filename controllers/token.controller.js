@@ -75,19 +75,6 @@ class TokenController {
         // });
     }
 
-
-    sync(req,res){
-
-        let self = this;
-
-        self.getPastEvents()
-            .then( (results) => {
-
-                res.status(200).send('check');
-        });
-
-    }
-
     getPastEvents() {
 
         let self = this;
@@ -196,6 +183,18 @@ class TokenController {
             .then( (results) => {
 
                 res.status(200).send(JSON.stringify(results));
+            });
+
+    }
+
+    sync(req,res){
+
+        let self = this;
+
+        self.getPastEvents()
+            .then( (results) => {
+
+                res.status(200).send('check');
             });
 
     }
