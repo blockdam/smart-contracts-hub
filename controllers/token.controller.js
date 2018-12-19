@@ -75,12 +75,25 @@ class TokenController {
         // });
     }
 
+
+    sync(req,res){
+
+        let self = this;
+
+        this.getPastEvents()
+            .then( (results) => {
+
+                res.status(200).send('check');
+        });
+
+    }
+
     getPastEvents() {
 
         let self = this;
         self.eventList = [];
 
-        return new Promise((resolve, reject) => {
+        // return new Promise((resolve, reject) => {
 
             self.tokenContract.getPastEvents("allEvents", {fromBlock: 0, toBlock: 'latest'}, function (err, data) {
 
@@ -105,7 +118,7 @@ class TokenController {
                         });
                 }
             });
-        });
+        // });
     }
 
     _storeEvent(event) {
