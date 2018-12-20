@@ -80,7 +80,7 @@ class TokenService {
 
         let circulation = [];
 
-        transfers.sort((a, b) => a.date) - b.date);
+        transfers.sort((a, b) => a.date - b.date);
 
         var start = moment(transfers[0].date);
         var end = moment();
