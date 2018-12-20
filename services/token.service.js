@@ -101,11 +101,11 @@ class TokenService {
             //     weekValue = weekValue + parseInt(tww.value);
             // });
 
-             week.date = JSON.parse(JSON.stringify(w.toISOString()));  // w.add(1,'week')
+             week.date = w.toISOString()));  // w.add(1,'week')
              week.value = weekValue;
 
             logger.info(week.date);
-            circulation.push(week);
+            circulation.push(JSON.parse(JSON.stringify(week)));
         }
 
 
