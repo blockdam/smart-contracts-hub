@@ -98,11 +98,13 @@ class TokenService {
                 weekValue = weekValue + tww.value;
             });
 
+            // w.add(1,'week')
             let week = {
-             
+                date : w,
+                value : weekValue
             };
 
-            circulation.add(week);
+            circulation.push(week);
         }
 
         logger.info('3');
