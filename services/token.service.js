@@ -93,13 +93,13 @@ class TokenService {
 
             weekValue = 0;
 
-            // let transfersWithinWeek = transfers.filter( (t) => {
-            //     return moment(t.date) >= w && moment(t.date) < w.add(1, 'week');
-            // });
-            //
-            // transfersWithinWeek.forEach ( (tww) => {
-            //     weekValue = weekValue + parseInt(tww.value);
-            // });
+            let transfersWithinWeek = transfers.filter( (t) => {
+                return moment(t.date) >= w && moment(t.date) < w.add(1, 'week');
+            });
+
+            transfersWithinWeek.forEach ( (tww) => {
+                weekValue = weekValue + parseInt(tww.value);
+            });
 
              week.date = w.toISOString();  // w.add(1,'week')
              week.value = weekValue;
