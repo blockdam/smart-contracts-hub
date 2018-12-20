@@ -103,7 +103,7 @@ class TokenService {
              week.value = weekValue / config.bcdRatio;
 
             circulation.push(week);
-            circulation.push(JSON.parse(JSON.stringify(week)));
+           // circulation.push(JSON.parse(JSON.stringify(week)));
         }
 
         return circulation;
