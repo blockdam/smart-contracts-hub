@@ -76,6 +76,8 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
+        logger.info('syncing from ' + fromBlock);
+
         return new Promise((resolve, reject) => {
 
             let options = {
