@@ -168,7 +168,7 @@ class TokenController {
 
             })
             .catch( (err) =>{
-                res.status(500).send(JSON.stringify(err));
+                res.status(418).send(JSON.stringify(err));
             });
 
     }
@@ -211,7 +211,6 @@ class TokenController {
 
         self.eventPersistence.find(options)
             .then( (results) => {
-
                 res.status(200).send(JSON.stringify(results));
             });
 
@@ -227,8 +226,7 @@ class TokenController {
                 res.status(200).send('check');
             })
             .catch( (err) => {
-
-                res.status(400);
+                res.status(418);
             });
 
     }
