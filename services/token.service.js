@@ -79,6 +79,7 @@ class TokenService {
     calcCirculation(transfers) {
 
         let circulation = [],
+            week,
             weekValue;
 
         transfers.sort((a, b) => a.date - b.date);
@@ -95,19 +96,20 @@ class TokenService {
             });
 
             transfersWithinWeek.forEach ( (tww) => {
-                weekValue = weekValue + tww.value;
+                weekValue = weekValue + parseInt(tww.value);
             });
 
             // w.add(1,'week')
-            let week = {
+             week = {
                 date : w,
                 value : weekValue
             };
 
+            logger.info('once?');
             circulation.push(week);
         }
 
-        logger.info('3');
+
 
         return circulation;
 
