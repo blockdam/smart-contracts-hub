@@ -84,12 +84,12 @@ class TokenService {
 
         transfers.sort((a, b) => a.date - b.date);
 
-        var start = moment(transfers[0].date);
+        var start = transfers[0].date;
         var end = moment();
 
         logger.info(start.toISOString()); // make it the monday before
 
-        for (let w = start; w.isBefore(end); w.add(1,'week')) {
+        for (let w = moment(start); w.isBefore(end); w.add(1,'week')) {
 
             weekValue = 0;
 
@@ -102,7 +102,7 @@ class TokenService {
             // });
 
              week.date = w.toISOString();  // w.add(1,'week')
-             week.value = weekValue
+             week.value = weekValue;
 
             logger.info(week.date);
             circulation.push(week);
