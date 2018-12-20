@@ -173,6 +173,30 @@ class TokenController {
 
     }
 
+    getCirculation(req, res) {
+
+        let self = this,
+            circulationData = null;
+
+        let options = {
+            query : {
+            }
+        };
+
+        self.eventPersistence.find(options)
+            .then( (results) => {
+
+                circulationData = self.tokenService.calcCirculation(results);
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(circulationData));
+
+            })
+            .catch( (err) =>{
+                res.status(500).send(JSON.stringify(err));
+            });
+
+    }
+
     getTransactions(req, res) {
 
         let self = this,

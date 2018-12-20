@@ -23,7 +23,7 @@ class EventDefinition {
             event.blockNumber = data.blockNumber;
             event.from = data.from || data.returnValues.from;
             event.to  = data.to || data.returnValues.to;
-            event.value = data.v|| data.returnValues.value;
+            event.value = data.v || data.returnValues.value;
 
             resolve(event);
 

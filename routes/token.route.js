@@ -13,6 +13,7 @@ let getEvents = tokenCtrl.getEvents.bind(tokenCtrl);
 let sync = tokenCtrl.sync.bind(tokenCtrl);
 let getBalanceHistory = tokenCtrl.getBalanceHistory.bind(tokenCtrl);
 let getTransactions = tokenCtrl.getTransactions.bind(tokenCtrl);
+let getCirculation = tokenCtrl.getCirculation.bind(tokenCtrl);
 
 router.route('/events')
     .get(getEvents);
@@ -22,6 +23,9 @@ router.route('/sync')
 
 router.route('/balance')
     .get(getBalanceHistory);
+
+router.route('/circulation')
+    .get(getCirculation);
 
 router.route('/transactions')
     .get(getTransactions);
