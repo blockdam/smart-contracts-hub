@@ -19,16 +19,14 @@ class MemberController {
 
         let self = this;
 
-        this.memberPersistence.find()
+        self.memberPersistence.find()
             .then( (result) => {
                 res.status(200).send(JSON.stringify(result));
             })
             .catch( (err) => {
                 logger.info(err);
-                res.status(200).send({});
+                res.status(418);
             });
-
-
     }
 
     findOne(req, res) {
@@ -41,12 +39,9 @@ class MemberController {
             })
             .catch( (err) => {
                 logger.info(err);
-                res.status(200).send({});
+                res.status(418);
             });
     }
-
-
-
 }
 
 module.exports = MemberController;

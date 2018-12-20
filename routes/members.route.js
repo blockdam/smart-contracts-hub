@@ -11,8 +11,8 @@ let findOne = memberController.findOne.bind(memberController);
 
 // CRUD routes
 
-router.route('/')
-    .get(getAll);
+router.route('')
+    .get(findOne);
 
 router.route('/:id')
     .get(findOne);
