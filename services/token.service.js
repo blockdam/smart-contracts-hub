@@ -84,7 +84,7 @@ class TokenService {
 
         transfers.sort((a, b) => a.date - b.date);
 
-        var start = transfers[0].date;
+        var start = moment(transfers[0].date).startOf('isoWeek'); // start of week before first transaction
         var end = moment();
 
         logger.info(start.toISOString()); // make it the monday before
@@ -101,7 +101,7 @@ class TokenService {
             //     weekValue = weekValue + parseInt(tww.value);
             // });
 
-             week.date = w.toISOString();  // w.add(1,'week')
+             week.date = JSON.parse(JSON.stringify(w.toISOString()));  // w.add(1,'week')
              week.value = weekValue;
 
             logger.info(week.date);
