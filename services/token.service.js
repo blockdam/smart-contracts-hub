@@ -97,16 +97,13 @@ class TokenService {
             transfersWithinWeek.forEach ( (tww) => {
                 weekValue = weekValue + tww.value;
             });
-            
+
             let week = {
-                date : w.add(1,'week'),
+                date : w,
                 value : weekValue
             };
 
             circulation.add(week);
-
-
-
         }
 
         logger.info('3');
