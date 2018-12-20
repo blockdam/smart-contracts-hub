@@ -87,8 +87,6 @@ class TokenService {
         var start = moment(transfers[0].date).startOf('isoWeek'); // start of week before first transaction
         var end = moment();
 
-        logger.info(start.toISOString()); // make it the monday before
-
         for (let w = moment(start); w.isBefore(end); w.add(1,'week')) {
 
             weekValue = 0;
@@ -101,19 +99,15 @@ class TokenService {
                 weekValue = weekValue + parseInt(tww.value);
             });
 
-             week.date = w.toISOString();  // w.add(1,'week')
+             week.date = moment(w).toISOString();  // w.add(1,'week')
              week.value = weekValue / config.bcdRatio;
 
-            logger.info(week.date);
+            circulation.push(week);
             circulation.push(JSON.parse(JSON.stringify(week)));
         }
 
-
-
         return circulation;
-
     }
-
 }
 
 
