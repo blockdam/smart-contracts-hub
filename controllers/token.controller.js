@@ -155,8 +155,10 @@ class TokenController {
             history = null;
 
         let options = {
-            query : {
-            }
+            $or: [
+                { 'to': '0x0000000000000000000000000000000000000000'  },
+                { 'from': '0x0000000000000000000000000000000000000000' }
+            ]
         };
 
         self.eventPersistence.find(options)
