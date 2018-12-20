@@ -19,7 +19,7 @@ class TokenController {
         this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
-        this.latestSyncedBlock = 0;
+        this.latestSyncedBlock = config.latestSyncedBlock;
     }
 
     init() {
