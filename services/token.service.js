@@ -102,7 +102,7 @@ class TokenService {
             });
 
              week.date = w.toISOString();  // w.add(1,'week')
-             week.value = weekValue;
+             week.value = weekValue / config.bcdRatio;
 
             logger.info(week.date);
             circulation.push(JSON.parse(JSON.stringify(week)));
