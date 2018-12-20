@@ -87,6 +87,8 @@ class TokenService {
         var start = moment(transfers[0].date);
         var end = moment();
 
+        logger.info(start);
+
         for (let w = start; w.isBefore(end); w.add(1, 'week')) {
 
             weekValue = 0;
