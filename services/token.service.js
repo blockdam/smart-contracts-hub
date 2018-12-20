@@ -101,7 +101,7 @@ class TokenService {
             //     weekValue = weekValue + parseInt(tww.value);
             // });
 
-             week.date = w.toISOString()));  // w.add(1,'week')
+             week.date = w.toISOString();  // w.add(1,'week')
              week.value = weekValue;
 
             logger.info(week.date);
