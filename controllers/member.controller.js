@@ -19,7 +19,7 @@ class MemberController {
 
         let self = this;
 
-        self.memberPersistence.find()
+        self.memberPersistence.findAll()
             .then( (result) => {
                 res.status(200).send(JSON.stringify(result));
             })
