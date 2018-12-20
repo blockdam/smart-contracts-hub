@@ -19,6 +19,7 @@ class TokenController {
         this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
+        this.latestSyncedBlock = 0;
     }
 
     init() {
@@ -59,15 +60,18 @@ class TokenController {
         })
         .on("data", function (log) {
 
-            self.web3.eth.getTransaction(log.transactionHash)
-                .then(function (transfer) {
-                    transfer.transactionHash = log.transactionHash
-                    self._storeEvent(transfer);
-                });
+            // self.web3.eth.getTransaction(log.transactionHash)
+            //     .then(function (transfer) {
+            //         transfer.transactionHash = log.transactionHash
+            //         self._storeEvent(transfer);
+            //     });
+
+            self.getPastEvents(self.latestSyncedBlock);
+
         });
     }
 
-    getPastEvents() {
+    getPastEvents(fromBlock) {
 
         let self = this;
         self.eventList = [];
@@ -75,7 +79,7 @@ class TokenController {
         return new Promise((resolve, reject) => {
 
             let options = {
-                fromBlock: 0,
+                fromBlock: fromBlock,
                 toBlock: 'latest'
             };
 
@@ -94,6 +98,8 @@ class TokenController {
                         return self._storeEvent(transfer);
                     })
                     .then(() => {
+
+                        self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
                         logger.info('saved all events');
                         resolve({});
                     })
@@ -189,7 +195,7 @@ class TokenController {
 
         let self = this;
 
-        self.getPastEvents()
+        self.getPastEvents(0)
             .then( (results) => {
 
                 res.status(200).send('check');
