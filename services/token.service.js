@@ -55,11 +55,11 @@ class TokenService {
 
                 if (transfer.from === '0x0000000000000000000000000000000000000000') {
 
-                    balance.granted = transfer.value / 1000000000000000000;
+                    balance.granted = transfer.value / config.bcdRatio;
 
                 } else if (transfer.to === '0x0000000000000000000000000000000000000000') {
 
-                    balance.sold = transfer.value / 1000000000000000000;
+                    balance.sold = transfer.value / config.bcdRatio;
                 }
 
                 totalGrants = totalGrants - balance.sold + balance.granted;
@@ -111,45 +111,6 @@ class TokenService {
 
         return circulation;
 
-
-
-        // transfers.forEach((transfer,i) => {
-        //
-        //     // we don't want a gradual line between two balance records in time .. so we make a stub with previous values just before the chnage
-        //     if (i > 0) {
-        //         let prevBalance = {};
-        //         prevBalance.date  = moment(transfer.date).subtract(1, 's');
-        //         prevBalance.totalGrants = totalGrants;
-        //
-        //         history.push(prevBalance);
-        //     }
-        //
-        //     let balance = {};
-        //     balance.date = transfer.date;
-        //     balance.granted = 0;
-        //     balance.sold = 0;
-        //
-        //     if (transfer.from === '0x0000000000000000000000000000000000000000') {
-        //
-        //         balance.granted = transfer.value / 1000000000000000000;
-        //
-        //     } else if (transfer.to === '0x0000000000000000000000000000000000000000') {
-        //
-        //         balance.sold = transfer.value / 1000000000000000000;
-        //     }
-        //
-        //     totalGrants = totalGrants - balance.sold + balance.granted;
-        //     balance.totalGrants = totalGrants;
-        //
-        //     history.push(balance);
-        // });
-        //
-        // let currentBalance = {};
-        // currentBalance.date  = moment();
-        // currentBalance.totalGrants = totalGrants;
-        // history.push(currentBalance);
-        //
-        // return history;
     }
 
 }
