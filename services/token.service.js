@@ -88,8 +88,6 @@ class TokenService {
 
         for (let w = start; w.isBefore(end); w.add(1, 'week')) {
 
-            logger.info('1');
-
             weekValue = 0;
 
             let transfersWithinWeek = transfers.filter( (t) => {
@@ -98,18 +96,12 @@ class TokenService {
 
             transfersWithinWeek.forEach ( (tww) => {
                 weekValue = weekValue + tww.value;
-
-                logger.info('4');
-
             });
-
-            logger.info('2');
-
+            
             let week = {
-
-                'date' : w.add(1, 'week'),
-                'value' : weekValue
-            }
+                date : w.add(1,'week'),
+                value : weekValue
+            };
 
             circulation.add(week);
 
