@@ -178,8 +178,12 @@ class TokenController {
         let self = this,
             circulationData = null;
 
-        let options = {
+        let  options = {
             query : {
+                $and: [
+                    { 'to': { $ne: '0x0000000000000000000000000000000000000000' } },
+                    { 'from': { $ne: '0x0000000000000000000000000000000000000000'} }
+                ]
             }
         };
 
