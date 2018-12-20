@@ -78,16 +78,35 @@ class TokenService {
 
     calcCirculation(transfers) {
 
-        let circulation = [];
+        let circulation = [],
+            weekValue;
 
         transfers.sort((a, b) => a.date - b.date);
 
         var start = moment(transfers[0].date);
         var end = moment();
-        ;
 
-        for (var w = start; w.isBefore(end); w.add(1, 'week')) {
-            console.log(w.format('YYYY-MM-DD'));
+        for (let w = start; w.isBefore(end); w.add(1, 'week')) {
+
+            weekValue = 0;
+
+            let transfersWithinWeek = transfers.filter( (t) => {
+                return moment(t.date) >= w && moment(t.date) < w.add(1, 'week');
+            });
+
+            transfersWithinWeek.forEach ( (tww) => {
+                weekValue = weekValue + tww.value;
+
+            });
+
+            let week = {
+
+                'date' : w.add(1, 'week'),
+                'value' : weekValue
+            }
+
+            circulation.add(week);
+
         }
 
         return circulation;
