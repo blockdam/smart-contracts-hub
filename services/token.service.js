@@ -99,8 +99,7 @@ class TokenService {
             });
 
             let week = {
-                date : w,
-                value : weekValue
+             
             };
 
             circulation.add(week);
