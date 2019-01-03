@@ -1,5 +1,6 @@
 const app = require('./express'),
     appConfig = require('./config/index'),
+    TokenController = require('./controllers/token.controller'),
     ReadingListController = require('./controllers/readingList.controller'),
     logger = require('./services/logger.service');
 
