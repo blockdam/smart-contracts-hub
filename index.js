@@ -9,7 +9,7 @@ app.listen(appConfig.port, () => {
     console.log('server started on port ' + appConfig.port);
 
     let tokenCtrl = new TokenController();
-    let readingListCtrl = new ReadingListCtrl();
+    let readingListCtrl = new ReadingListController();
 
     tokenCtrl.init().then( () => {
          tokenCtrl.subscribe();
