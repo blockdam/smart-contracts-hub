@@ -23,7 +23,7 @@ function get(network) {
 
         } else if (network === 'localhost') {
             web3 = new Web3(
-                new Web3.providers.WebsocketProvider(Ganache.provider())
+                new Web3.providers.WebsocketProvider('ws://localhost:7545')
             );
             resolve(web3);
         }
