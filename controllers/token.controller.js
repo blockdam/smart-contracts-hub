@@ -45,7 +45,6 @@ class TokenController {
     subscribe() {
 
         let self = this;
-
         let options = {
             fromBlock: '0x0',
             address: config.addresses.bcdToken
@@ -59,15 +58,7 @@ class TokenController {
             }
         })
         .on("data", function (log) {
-
-            // self.web3.eth.getTransaction(log.transactionHash)
-            //     .then(function (transfer) {
-            //         transfer.transactionHash = log.transactionHash
-            //         self._storeEvent(transfer);
-            //     });
-
             self.getPastEvents(self.latestSyncedBlock);
-
         });
     }
 

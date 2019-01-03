@@ -8,12 +8,9 @@ const fs = require('graceful-fs');
 
 class MemberController {
 
-
     constructor () {
-
         this.memberPersistence = new MemberPersistence();
     }
-
 
     getAll(req, res) {
 
