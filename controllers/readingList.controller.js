@@ -7,7 +7,7 @@ const logger = require('../services/logger.service');
 // const EventDefinition = require('../definitions/event.definition');
 // const EventPersistence = require('../persistences/event.persistence');
 const config = require('../config');
-// const fs = require('graceful-fs');
+const fs = require('graceful-fs');
 
 class ReadingListController {
 
