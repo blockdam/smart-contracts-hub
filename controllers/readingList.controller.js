@@ -27,6 +27,7 @@ class ReadingListController {
             eth.get('localhost').then( (web3) => {
                 self.web3 = web3;
                 self.contract = new web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
+                logger.info(self.contract);
                 resolve();
             })
             .catch(error => {
@@ -43,6 +44,8 @@ class ReadingListController {
             fromBlock: '0x0',
             address: config.addresses.readingList
         };
+
+        logger.info("next");
 
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
             if(error) {
