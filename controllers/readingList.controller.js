@@ -63,7 +63,7 @@ class ReadingListController {
         };
 
         let self = this;
-        self.tokenContract.getPastEvents("LinkAdded", options, function (err, data) {
+        self.contract.getPastEvents("LinkAdded", options, function (err, data) {
 
             if (err) {
                 console.log(err)
