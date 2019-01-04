@@ -18,6 +18,7 @@ class ReadingListController {
         // this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/ReadingList.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
+        this.web3 = null;
     }
 
     init() {
@@ -48,7 +49,7 @@ class ReadingListController {
         //     console.log(err, events);
         // })
 
-        web3.eth.subscribe('newBlockHeaders', (error, result) => {
+        self.web3.eth.subscribe('newBlockHeaders', (error, result) => {
             if(!error) {
                 console.log(result);
             } else {
