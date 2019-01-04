@@ -45,19 +45,17 @@ class ReadingListController {
             address: config.addresses.readingList
         };
 
-        // self.contract.events.LinkAdded( (err, events) => {
-        //     console.log(err, events);
-        // })
 
-        self.web3.eth.subscribe('newBlockHeaders', (error, result) => {
-            if(!error) {
-                console.log(result);
+        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+            if(error) {
+                logger.info(error);
             } else {
-                console.log('Error:', error);
+                logger.info('listening to ' + config.addresses.bcdToken);
             }
-        }).on("data", function (transaction) {
-            console.log(transaction);
+        }).on("data", function (log) {
+            console.log(log);
         });
+
 
         // let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
         //     logger.info("next");
