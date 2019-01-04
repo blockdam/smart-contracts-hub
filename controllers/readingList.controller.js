@@ -25,7 +25,7 @@ class ReadingListController {
 
         let self = this;
         return new Promise((resolve, reject) => {
-            eth.get('localhost').then( (web3) => {
+            eth.get('rinkeby').then( (web3) => {
                 self.web3 = web3;
                 self.contract = new web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
                 resolve();
