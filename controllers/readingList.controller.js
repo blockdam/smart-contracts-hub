@@ -45,29 +45,21 @@ class ReadingListController {
             address: config.addresses.readingList
         };
 
-
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
             if(error) {
                 logger.info(error);
-            } else {
-                logger.info('listening to ' + config.addresses.bcdToken);
             }
         }).on("data", function (log) {
+            self.getList(log.transactionHash);
             console.log(log);
         });
+    }
 
+    getList(tx) {
 
-        // let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-        //     logger.info("next");
-        //     if(error) {
-        //         logger.info(error);
-        //     } else {
-        //         logger.info('listening to ' + config.addresses.readingList);
-        //     }
-        // })
-        // .on("data", function (log) {
-        //     logger.info(log);
-        // });
+        let self = this;
+        let receipt = self.web3.eth.getTransactionReceipt(tx);
+        console.log(receipt);
     }
 }
 
