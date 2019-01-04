@@ -50,20 +50,28 @@ class ReadingListController {
                 logger.info(error);
             }
         }).on("data", function (log) {
-            self.getList(log.transactionHash);
+            self.getList(log.blockNumber);
             console.log(log);
         });
     }
 
-    getList(tx) {
+    getList(fromBlock) {
+
+        let options = {
+            fromBlock: fromBlock,
+            toBlock: 'latest'
+        };
 
         let self = this;
-        let receipt = self.web3.eth.getTransactionReceipt(tx, function (error, result) {
-            if(error) {
-                logger.info(error);
+        self.tokenContract.getPastEvents("LinkAdded", options, function (err, data) {
+
+            if (err) {
+                console.log(err)
             }
-            console.log(result);
-        });
+            if (data) {
+                console.log(data)
+            }
+        })
     }
 }
 
