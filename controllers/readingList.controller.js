@@ -58,8 +58,12 @@ class ReadingListController {
     getList(tx) {
 
         let self = this;
-        let receipt = self.web3.eth.getTransactionReceipt(tx);
-        console.log(receipt);
+        let receipt = self.web3.eth.getTransactionReceipt(tx, function (error, result) {
+            if(error) {
+                logger.info(error);
+            }
+            console.log(result);
+        });
     }
 }
 

@@ -58,7 +58,6 @@ class TokenService {
                     balance.granted = transfer.value / config.bcdRatio;
 
                 } else if (transfer.to === '0x0000000000000000000000000000000000000000') {
-
                     balance.sold = transfer.value / config.bcdRatio;
                 }
 
