@@ -27,7 +27,6 @@ class ReadingListController {
             eth.get('localhost').then( (web3) => {
                 self.web3 = web3;
                 self.contract = new web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
-                logger.info(self.contract);
                 resolve();
             })
             .catch(error => {
