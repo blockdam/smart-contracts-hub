@@ -45,9 +45,8 @@ class ReadingListController {
             address: config.addresses.readingList
         };
 
-        logger.info("next");
-
         let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+            logger.info("next");
             if(error) {
                 logger.info(error);
             } else {
