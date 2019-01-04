@@ -44,17 +44,21 @@ class ReadingListController {
             address: config.addresses.readingList
         };
 
-        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-            logger.info("next");
-            if(error) {
-                logger.info(error);
-            } else {
-                logger.info('listening to ' + config.addresses.readingList);
-            }
+        self.contract.events.LinkAdded( (err, events) => {
+            console.log(err, events);
         })
-        .on("data", function (log) {
-            logger.info(log);
-        });
+
+        // let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+        //     logger.info("next");
+        //     if(error) {
+        //         logger.info(error);
+        //     } else {
+        //         logger.info('listening to ' + config.addresses.readingList);
+        //     }
+        // })
+        // .on("data", function (log) {
+        //     logger.info(log);
+        // });
     }
 }
 
