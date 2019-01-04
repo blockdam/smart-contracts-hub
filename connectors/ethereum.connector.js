@@ -23,9 +23,9 @@ function get(network) {
 
         } else if (network === 'localhost') {
             web3 = new Web3(
-                new Web3.providers.HttpProvider('http://localhost:7545')
+                new Web3.providers.WebsocketProvider('ws://localhost:7545')
             );
-            web3.setProvider(Ganache.provider());
+            // web3.setProvider(Ganache.provider());
             resolve(web3);
         }
     });

@@ -44,9 +44,19 @@ class ReadingListController {
             address: config.addresses.readingList
         };
 
-        self.contract.events.LinkAdded( (err, events) => {
-            console.log(err, events);
-        })
+        // self.contract.events.LinkAdded( (err, events) => {
+        //     console.log(err, events);
+        // })
+
+        web3.eth.subscribe('newBlockHeaders', (error, result) => {
+            if(!error) {
+                console.log(result);
+            } else {
+                console.log('Error:', error);
+            }
+        }).on("data", function (transaction) {
+            console.log(transaction);
+        });
 
         // let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
         //     logger.info("next");
