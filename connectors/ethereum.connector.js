@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const config = require('../config');
 const Web3 = require('web3');
-const Ganache = require("ganache-core");
+const ganache = require("ganache-core");
 
 // set database connection object
 let web3 = null;
@@ -25,7 +25,7 @@ function get(network) {
             web3 = new Web3(
                 new Web3.providers.WebsocketProvider('ws://localhost:7545')
             );
-            web3.setProvider(Ganache.provider());
+            web3.setProvider(ganache.provider());
             resolve(web3);
         }
     });
