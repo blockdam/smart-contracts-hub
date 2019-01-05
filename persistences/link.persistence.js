@@ -26,7 +26,7 @@ class MemberPersistence {
         })
     }
 
-    findOne(id) {
+    findOne() {
         let self = this,
         query = {};
 
@@ -48,8 +48,20 @@ class MemberPersistence {
         })
     }
 
+    findUrl(url) {
+        let self = this,
+            query = {};
+
+        return new Promise((resolve, reject) => {
+            db.getLinksCollection() // get page collection
+                .then((collection) => { return collection.findOne({ url : url}); }) // execute find query
+                .then((result) => { resolve(result);})
+                .catch( (err) => { reject(err); })
+        })
+    }
+
     save(data) {
-        const self = this;
+        let self = this;
         let collection = null;
 
         return new Promise((resolve, reject) => {
@@ -59,7 +71,12 @@ class MemberPersistence {
                     return new Promise((res, rej) => {  collection = coll; res({}); })
                 })
                 .then( () => { return collection.replaceOne({ 'url' : data.url }, data, { 'upsert': true }) })
-                .then( (result) => { resolve(result); })
+                .then( () => {
+                    return self.findUrl(data.url)
+                })
+                .then( (item) => {
+                    resolve(item._id);
+                })
                 .catch((error) => {
                     reject(error);
                 });
