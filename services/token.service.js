@@ -6,9 +6,7 @@ const logger = require('./logger.service');
 const config = require('../config/index');
 const moment = require('moment');
 
-/**
- * Service for getting dataset for visualization from the post sections and saving the dataset in a separate file so it can be loaded on the static pages
- */
+
 class TokenService {
 
     constructor() {}

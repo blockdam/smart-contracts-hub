@@ -3,9 +3,8 @@
 const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
-// const TokenService = require('../services/token.service');
-// const EventDefinition = require('../definitions/event.definition');
-// const EventPersistence = require('../persistences/event.persistence');
+const UrlMetaDataService = require('../services/url_metadata.service');
+
 const config = require('../config');
 const fs = require('graceful-fs');
 
@@ -72,6 +71,16 @@ class ReadingListController {
                 console.log(data)
             }
         })
+    }
+
+    getMetaData(url) {
+
+        let metaData = {};
+
+        UrlMetaDataService.get()
+
+        return metaData;
+
     }
 }
 
