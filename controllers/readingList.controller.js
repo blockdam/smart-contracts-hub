@@ -50,6 +50,7 @@ class ReadingListController {
                 logger.info(error);
             }
         }).on("data", function (log) {
+            console.log(log);
             self.getList();
         });
     }
@@ -70,10 +71,11 @@ class ReadingListController {
             for (let i = 1; i <= noSlots;i++) {
                 self.contract.methods.slots(i).call( (err,id) => {
                     array.push(id);
+                    if(array.length > noSlots) {
+                        logger.info(array);
+                    }
                 });
             }
-
-            logger.info(array);
         });
     }
 
