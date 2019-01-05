@@ -62,7 +62,7 @@ class ReadingListController {
         self.contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
 
 
-        self.contract.slotsCount.call( (err,noSlots) => {
+        self.contract.slotsCount().call( (err,noSlots) => {
 
             logger.info('jopie');
             logger.info(noSlots);
