@@ -75,7 +75,7 @@ class ReadingListController {
 
     getMetaData(req, res, next) {
 
-        logger.info(req.params);
+        logger.info(req);
 
         let metaData = {};
 
