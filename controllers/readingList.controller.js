@@ -71,7 +71,7 @@ class ReadingListController {
             for (let i = 1; i <= noSlots;i++) {
                 self.contract.methods.slots(i).call( (err,id) => {
                     array.push(id);
-                    if(array.length > noSlots) {
+                    if(array.length > (noSlots - 1)) {
                         logger.info(array);
                     }
                 });
