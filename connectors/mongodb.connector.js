@@ -35,6 +35,11 @@ module.exports = {
         return getMongoConnection().then((conn) => {
             return conn.collection('members');
         })
+    },
+    getLinksCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('links');
+        })
     }
 };
 

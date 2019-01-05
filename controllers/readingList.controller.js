@@ -4,6 +4,7 @@ const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const UrlMetaDataService = require('../services/url_metadata.service');
+const LinkPersistence = require('../persistences/link.persistence');
 
 const config = require('../config');
 const fs = require('graceful-fs');
@@ -80,23 +81,16 @@ class ReadingListController {
         if(req.body.url) {
             let metaData = await urlMetaDataService.getMetaData(req.body.url);
             res.send(metaData);
-
-            // req.params.url
-                // .then((metaData) => {
-                //     res.send(metaData);
-                // })
-                // .catch( (error) => {
-                //     logger.info(error);
-                // });
         } else {
-
             res.send('You must specify a url');
         }
     }
 
     async store(req, res) {
 
-        res.send('You must specify a url');
+        let linkPersistence = new LinkPersistence();
+        let savedObject = await linkPersistence.save(req.body.link);
+        res.json(savedObject);
     }
 }
 
