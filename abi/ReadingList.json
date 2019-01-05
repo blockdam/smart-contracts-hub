@@ -1,5 +1,4 @@
-{
-  "contractName": "ReadingList",
+{"contractName": "ReadingList",
   "abi": [
     {
       "constant": true,
