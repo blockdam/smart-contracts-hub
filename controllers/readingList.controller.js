@@ -74,13 +74,13 @@ class ReadingListController {
     }
 
     getMetaData(req, res, next) {
-        
+
 
         let urlMetaDataService = new UrlMetaDataService();
 
         if(req.params.url) {
 
-            urlMetaDataService.getMetaData('https://eand.co/why-the-21st-century-needs-a-new-kind-of-mind-d371d10b2024')    // req.params.url
+            urlMetaDataService.getMetaData(decodeURI(req.params.url))    // req.params.url
                 .then((metaData) => {
 
                     res.send(metaData);
