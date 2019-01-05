@@ -20,14 +20,13 @@ class URLMetaDataService {
 
     constructor() {}
 
-    getMetaData (url) {
+    async getMetaData (targetUrl) {
 
         let self = this;
 
-
-                const { body: html, url } = await got(url)
-                const metadata = await metascraper({ html, url })
-
+        const { body: html, url } = await got(targetUrl)
+        const metadata = await metascraper({ html, url })
+        return metadata;
 
 
             // got(url)
@@ -39,7 +38,7 @@ class URLMetaDataService {
             // }).catch( (error) => {
             //     reject(error);
             // });
-        });
+        // });
     }
 }
 
