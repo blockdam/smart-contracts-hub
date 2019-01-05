@@ -75,13 +75,11 @@ class ReadingListController {
 
     getMetaData(req, res, next) {
 
-        logger.info(req);
-
         let metaData = {};
 
         if(req.params.url) {
 
-            urlMetaDataService.getMetaData(url)
+            urlMetaDataService.getMetaData(req.params.url)
                 .then((metadata) => {
 
                     res.send(metaData);
