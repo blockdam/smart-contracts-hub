@@ -73,17 +73,21 @@ class ReadingListController {
         })
     }
 
-    getMetaData(req, res) {
+    async getMetaData(req, res) {
+
 
         let urlMetaDataService = new UrlMetaDataService();
         if(req.body.url) {
-            urlMetaDataService.getMetaData(req.body.url)    // req.params.url
-                .then((metaData) => {
-                    res.send(metaData);
-                })
-                .catch( (error) => {
-                    logger.info(error);
-                });
+            let metaData = await urlMetaDataService.getMetaData(req.body.url);
+            res.send(metaData);
+
+            // req.params.url
+                // .then((metaData) => {
+                //     res.send(metaData);
+                // })
+                // .catch( (error) => {
+                //     logger.info(error);
+                // });
         } else {
 
             res.send('You must specify a url');

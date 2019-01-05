@@ -20,18 +20,15 @@ class URLMetaDataService {
 
     constructor() {}
 
-    getMetaData(url) {
+    getMetaData (url) {
 
         let self = this;
 
-        return new Promise((resolve, reject) => {
 
-
-            async () => {
                 const { body: html, url } = await got(url)
                 const metadata = await metascraper({ html, url })
-                resolve(metadata)
-            })()
+
+
 
             // got(url)
             // .then( (html) => {
