@@ -28,6 +28,7 @@ class ReadingListController {
         return new Promise((resolve, reject) => {
             eth.get('rinkeby').then( (web3) => {
                 self.web3 = web3;
+                self.contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
                 resolve();
             })
             .catch(error => {
@@ -60,17 +61,14 @@ class ReadingListController {
         let self = this,
             array = [];
 
-        self.contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
-
-
         self.contract.methods.slotsCount().call( (err,noSlots) => {
             if(err) {
                 console.log(err);
             }
 
             for (let i = 1; i <= noSlots;i++) {
-                self.contract.methods.slots(i).call( (err,id) => {
-                    array.push(id);
+                self.contract.methods.slots(i).call( (err,slot) => {
+                    array.push(slot.linkId);
                     if(array.length > (noSlots - 1)) {
                         logger.info(array);
                     }
