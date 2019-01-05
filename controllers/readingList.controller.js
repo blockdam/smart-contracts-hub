@@ -3,7 +3,7 @@
 const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
-const UrlMetaDataService = require('../services/url_metadata.service');
+const urlMetaDataService = require('../services/url_metadata.service');
 
 const config = require('../config');
 const fs = require('graceful-fs');
@@ -73,14 +73,23 @@ class ReadingListController {
         })
     }
 
-    getMetaData(url) {
+    getMetaData(req, res, next) {
+
+        logger.inf(req.params);
 
         let metaData = {};
 
-        UrlMetaDataService.get()
+        if(req.params.url) {
 
-        return metaData;
+            urlMetaDataService.getMetaData(url)
+                .then((metadata) => {
 
+                    res.send(metaData);
+                });
+        } else {
+
+            res.send('You must specify a url');
+        }
     }
 }
 
