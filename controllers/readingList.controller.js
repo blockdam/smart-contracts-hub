@@ -67,11 +67,9 @@ class ReadingListController {
                 console.log(err);
             }
 
-            logger.info(noSlots);
-
-            for (let i = 1; i < noSlots;i++) {
-                self.contract.methods.slots(1).call( (err,id) => {
-                    array.push(i,id);
+            for (let i = 1; i <= noSlots;i++) {
+                self.contract.methods.slots(i).call( (err,id) => {
+                    array.push(id);
                 });
             }
 
