@@ -10,7 +10,5 @@ let metaData = ctrl.getMetaData.bind(ctrl);
 // CRUD routes
 router.route('/:url')
     .get(metaData)
-// .put(update)
-// .delete(del);
 
 module.exports = router;
