@@ -6,9 +6,11 @@ let express = require('express'),
 const router = express.Router();
 const ctrl = new readingListController();
 let metaData = ctrl.getMetaData.bind(ctrl);
+let store = ctrl.store.bind(ctrl);
 
 // CRUD routes
 router.route('/')
-    .post(metaData)
+    .get(metaData)
+    .post(store);
 
 module.exports = router;
