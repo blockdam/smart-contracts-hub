@@ -31,7 +31,7 @@ class URLMetaDataService {
 
             got(url)
             .then( (html) => {
-                logger.info(html);
+                // logger.info(html);
                 return metascraper({ html, url })
             }).then( (result) => {
                 logger.info(result);
