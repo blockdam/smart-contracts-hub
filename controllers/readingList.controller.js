@@ -50,28 +50,25 @@ class ReadingListController {
                 logger.info(error);
             }
         }).on("data", function (log) {
-            self.getList(log.blockNumber);
-            console.log(log);
+            self.getList();
         });
     }
 
-    getList(fromBlock) {
+    getList() {
 
-        let options = {
-            fromBlock: fromBlock,
-            toBlock: 'latest'
-        };
+        let self = this,
+            array = [];
 
-        let self = this;
-        self.contract.getPastEvents("LinkAdded", options, function (err, data) {
+        self.contract.slotsCount.call( (err,noSlots) => {
 
-            if (err) {
-                console.log(err)
+            for (let i = 1, i <= noSlots,i++) {
+                self.contract.slots.call(i,(err,id) => {
+                    array.push(i,id);
+                });
             }
-            if (data) {
-                console.log(data)
-            }
-        })
+
+            logger.info(array);
+        });
     }
 
     async getMetaData(req, res) {
