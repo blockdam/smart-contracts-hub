@@ -19,6 +19,7 @@ class ReadingListController {
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/ReadingList.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
         this.web3 = null;
+        this.contract = null;
     }
 
     init() {
@@ -58,7 +59,7 @@ class ReadingListController {
         let self = this,
             array = [];
 
-        self.contract = self.web3.eth.contract(self.tokenAbi).at(config.addresses.readingList);
+        self.contract = self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
 
 
         self.contract.slotsCount.call( (err,noSlots) => {
