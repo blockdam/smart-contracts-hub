@@ -58,8 +58,10 @@ class MemberPersistence {
                 .then( (coll) => {
                     return new Promise((res, rej) => {  collection = coll; res({}); })
                 })
-                .then( () => { return collection.save(data, function(err, result) {
-                    resolve(result);
+                .then( () => { return collection.save(data,
+                    function(err, result) {
+                        resolve(result);
+                    })
                 })
                 .catch((error) => {
                     reject(error);
