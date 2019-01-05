@@ -93,6 +93,11 @@ class ReadingListController {
             res.send('You must specify a url');
         }
     }
+
+    async store(req, res) {
+
+        res.send('You must specify a url');
+    }
 }
 
 module.exports = ReadingListController;
