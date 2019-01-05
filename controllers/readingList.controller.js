@@ -58,7 +58,7 @@ class ReadingListController {
         let self = this,
             array = [];
 
-        self.contract = web3.eth.contract(self.tokenAbi).at(config.addresses.readingList);
+        self.contract = self.web3.eth.contract(self.tokenAbi).at(config.addresses.readingList);
 
 
         self.contract.slotsCount.call( (err,noSlots) => {
