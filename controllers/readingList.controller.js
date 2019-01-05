@@ -77,6 +77,8 @@ class ReadingListController {
 
         let urlMetaDataService = new UrlMetaDataService();
 
+        console.log(req.body);
+
         if(req.params.url) {
             urlMetaDataService.getMetaData(req.params.url)    // req.params.url
                 .then((metaData) => {

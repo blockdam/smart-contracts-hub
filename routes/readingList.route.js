@@ -8,7 +8,7 @@ const ctrl = new readingListController();
 let metaData = ctrl.getMetaData.bind(ctrl);
 
 // CRUD routes
-router.route('/:url')
-    .get(metaData)
+router.route('/')
+    .post(metaData)
 
 module.exports = router;
