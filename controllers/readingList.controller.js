@@ -81,7 +81,10 @@ class ReadingListController {
 
         if(req.params.url) {
 
-            urlMetaDataService.getMetaData(req.params.url)
+            urlMetaDataService.getMetaData('http://nu.nl')    // .catch( (error) => {
+            logger.info(error);
+            reject(error);
+        });
                 .then((metadata) => {
 
                     res.send(metaData);
