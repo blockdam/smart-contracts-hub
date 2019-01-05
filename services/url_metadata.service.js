@@ -7,15 +7,15 @@ const moment = require('moment');
 const got = require('got');
 
 const metascraper = require('metascraper')([
-    require('metascraper-author')(),
-    require('metascraper-date')(),
-    require('metascraper-description')(),
-    require('metascraper-image')(),
-    require('metascraper-logo')(),
-    require('metascraper-clearbit-logo')(),
-    require('metascraper-publisher')(),
-    require('metascraper-title')(),
-    require('metascraper-url')()
+    // require('metascraper-author')(),
+    // require('metascraper-date')(),
+    // require('metascraper-description')(),
+    // require('metascraper-image')(),
+    // require('metascraper-logo')(),
+    // require('metascraper-clearbit-logo')(),
+    // require('metascraper-publisher')(),
+    // require('metascraper-title')(),
+    // require('metascraper-url')()
 ])
 
 
