@@ -27,7 +27,7 @@ class URLMetaDataService {
         return new Promise((resolve, reject) => {
 
 
-            ;(async () => {
+            async () => {
                 const { body: html, url } = await got(url)
                 const metadata = await metascraper({ html, url })
                 resolve(metadata)
