@@ -59,6 +59,9 @@ class ReadingListController {
         let self = this,
             array = [];
 
+
+        logger.info('popie');
+
         self.contract.methods.slotsCount.call( (err,noSlots) => {
 
             for (let i = 1; i < noSlots;i++) {
