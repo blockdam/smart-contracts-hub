@@ -10,7 +10,7 @@ let store = ctrl.store.bind(ctrl);
 
 // CRUD routes
 router.route('/')
-    .get(metaData)
-    .post(store);
+    .post(metaData)
+    .put(store);
 
 module.exports = router;
