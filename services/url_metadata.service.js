@@ -37,7 +37,6 @@ class URLMetaDataService {
                 logger.info(result);
                 resolve(result);
             }).catch( (error) => {
-                logger.info(error);
                 reject(error);
             });
         });

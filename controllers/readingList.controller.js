@@ -85,6 +85,9 @@ class ReadingListController {
                 .then((metadata) => {
 
                     res.send(metaData);
+                })
+                .catch( (error) => {
+                    logger.info(error);
                 });
         } else {
 
