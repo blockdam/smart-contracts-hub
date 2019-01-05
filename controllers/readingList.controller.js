@@ -59,10 +59,10 @@ class ReadingListController {
         let self = this,
             array = [];
 
-        self.contract.slotsCount.call( (err,noSlots) => {
+        self.contract.methods.slotsCount.call( (err,noSlots) => {
 
             for (let i = 1; i < noSlots;i++) {
-                self.contract.slots.call(i,(err,id) => {
+                self.contract.methods.slots.call(i,(err,id) => {
                     array.push(i,id);
                 });
             }
