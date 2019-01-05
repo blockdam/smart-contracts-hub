@@ -76,7 +76,6 @@ class ReadingListController {
 
     async getMetaData(req, res) {
 
-
         let urlMetaDataService = new UrlMetaDataService();
         if(req.body.url) {
             let metaData = await urlMetaDataService.getMetaData(req.body.url);
@@ -88,10 +87,16 @@ class ReadingListController {
 
     async store(req, res) {
 
+        let self = this;
         let linkPersistence = new LinkPersistence();
-        let savedObject = await linkPersistence.save(req.body.link);
-        res.json(savedObject);
+        let savedObjectId = await linkPersistence.save(req.body.link);
+        res.json(savedObjectId);
     }
+
+    // async pay() {
+    //
+    //
+    // }
 }
 
 module.exports = ReadingListController;
