@@ -26,15 +26,22 @@ class URLMetaDataService {
 
         return new Promise((resolve, reject) => {
 
-            got(url)
-            .then( (html) => {
-                return metascraper({ html, url })
-            }).then( (result) => {
-                logger.info(result);
-                resolve(result);
-            }).catch( (error) => {
-                reject(error);
-            });
+
+            ;(async () => {
+                const { body: html, url } = await got(url)
+                const metadata = await metascraper({ html, url })
+                resolve(metadata)
+            })()
+
+            // got(url)
+            // .then( (html) => {
+            //     return metascraper({ html, url })
+            // }).then( (result) => {
+            //     logger.info(result);
+            //     resolve(result);
+            // }).catch( (error) => {
+            //     reject(error);
+            // });
         });
     }
 }
