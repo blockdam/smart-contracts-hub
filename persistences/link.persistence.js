@@ -60,7 +60,7 @@ class MemberPersistence {
                 })
                 .then( () => { return collection.save(data,
                     function(err, result) {
-                        resolve(result);
+                        resolve(data);
                     })
                 })
                 .catch((error) => {
