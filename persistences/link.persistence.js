@@ -58,9 +58,9 @@ class MemberPersistence {
                 .then( (coll) => {
                     return new Promise((res, rej) => {  collection = coll; res({}); })
                 })
-                .then( () => { return collection.save(data,
+                .then( () => { return collection.replaceOne({ 'url' : data.url }, data, { 'upsert': true },
                     function(err, result) {
-                        resolve(data);
+                        resolve(data._id);
                     })
                 })
                 .catch((error) => {
