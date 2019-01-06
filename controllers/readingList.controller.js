@@ -60,17 +60,19 @@ class ReadingListController {
     getList(req, res) {
 
         let self = this,
-            array = [];
+            array = [],
+            contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
 
-        self.contract.methods.slotsCount().call( (err,noSlots) => {
+
+        contract.methods.slotsCount().call( (err,noSlots) => {
             if(err) {
                 console.log(err);
             }
 
-            res.json(noSlots);
+            // res.json(noSlots);
 
             for (let i = 1; i <= noSlots;i++) {
-                self.contract.methods.slots(i).call( (err,slot) => {
+                contract.methods.slots(i).call( (err,slot) => {
                     array.push(slot.linkId);
                     if(array.length > (noSlots - 1)) {
                         res.json(array);
