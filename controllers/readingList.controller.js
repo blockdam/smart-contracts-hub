@@ -74,7 +74,7 @@ class ReadingListController {
                 // res.json(noSlots);
 
                 for (let i = 1; i <= noSlots;i++) {
-                    contract.methods.slots(i).call( (err,slot) => {
+                    self.contract.methods.slots(i).call( (err,slot) => {
                         array.push(slot.linkId);
                         if(array.length > (noSlots - 1)) {
                             res.json(array);
