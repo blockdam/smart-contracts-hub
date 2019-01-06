@@ -60,25 +60,32 @@ class ReadingListController {
     getList(req, res) {
 
         let self = this,
-            array = [],
-            contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
+            array = [];
 
+        eth.get('rinkeby').then( (web3) => {
+            self.web3 = web3;
+            self.contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
 
-        contract.methods.slotsCount().call( (err,noSlots) => {
-            if(err) {
-                console.log(err);
-            }
+            self.contract.methods.slotsCount().call( (err,noSlots) => {
+                if(err) {
+                    console.log(err);
+                }
 
-            // res.json(noSlots);
+                // res.json(noSlots);
 
-            for (let i = 1; i <= noSlots;i++) {
-                contract.methods.slots(i).call( (err,slot) => {
-                    array.push(slot.linkId);
-                    if(array.length > (noSlots - 1)) {
-                        res.json(array);
-                    }
-                });
-            }
+                for (let i = 1; i <= noSlots;i++) {
+                    contract.methods.slots(i).call( (err,slot) => {
+                        array.push(slot.linkId);
+                        if(array.length > (noSlots - 1)) {
+                            res.json(array);
+                        }
+                    });
+                }
+            });
+        })
+        .catch(error => {
+            logger.error(error);
+            reject(error);
         });
     }
 
