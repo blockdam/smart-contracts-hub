@@ -20,7 +20,7 @@ app.listen(appConfig.port, () => {
     });
 
     readingListCtrl.init().then( () => {
-        readingListCtrl.subscribe();
+        // readingListCtrl.subscribe();
     })
     .catch(error => {
         logger.error(error);

@@ -8,6 +8,7 @@ const LinkPersistence = require('../persistences/link.persistence');
 
 const config = require('../config');
 const fs = require('graceful-fs');
+const request = require('request');
 
 class ReadingListController {
 
@@ -38,25 +39,25 @@ class ReadingListController {
         });
     }
 
-    subscribe() {
+    // subscribe() {
+    //
+    //     let self = this;
+    //     let options = {
+    //         fromBlock: '0x0',
+    //         address: config.addresses.readingList
+    //     };
+    //
+    //     let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+    //         if(error) {
+    //             logger.info(error);
+    //         }
+    //     }).on("data", function (log) {
+    //         console.log(log);
+    //         // self.getList();
+    //     });
+    // }
 
-        let self = this;
-        let options = {
-            fromBlock: '0x0',
-            address: config.addresses.readingList
-        };
-
-        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-            if(error) {
-                logger.info(error);
-            }
-        }).on("data", function (log) {
-            console.log(log);
-            self.getList();
-        });
-    }
-
-    getList() {
+    getList(req, res) {
 
         let self = this,
             array = [];
@@ -66,16 +67,20 @@ class ReadingListController {
                 console.log(err);
             }
 
+            res.json(noSlots);
+
             for (let i = 1; i <= noSlots;i++) {
                 self.contract.methods.slots(i).call( (err,slot) => {
                     array.push(slot.linkId);
                     if(array.length > (noSlots - 1)) {
-                        logger.info(array);
+                        res.json(array);
                     }
                 });
             }
         });
     }
+
+
 
     async getMetaData(req, res) {
 
@@ -95,11 +100,6 @@ class ReadingListController {
         let savedObjectId = await linkPersistence.save(req.body.link);
         res.json(savedObjectId);
     }
-
-    // async pay() {
-    //
-    //
-    // }
 }
 
 module.exports = ReadingListController;

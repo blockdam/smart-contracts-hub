@@ -23,22 +23,9 @@ class URLMetaDataService {
     async getMetaData (targetUrl) {
 
         let self = this;
-
         const { body: html, url } = await got(targetUrl)
         const metadata = await metascraper({ html, url })
         return metadata;
-
-
-            // got(url)
-            // .then( (html) => {
-            //     return metascraper({ html, url })
-            // }).then( (result) => {
-            //     logger.info(result);
-            //     resolve(result);
-            // }).catch( (error) => {
-            //     reject(error);
-            // });
-        // });
     }
 }
 
