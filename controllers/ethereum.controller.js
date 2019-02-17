@@ -30,7 +30,7 @@ class EthereumController {
 
         eth.get('rinkeby').then( (web3) => {
 
-            web3Service.init(web3);
+            web3Service.set(web3);
 
             subscription = web3.eth.subscribe('logs', options, function (error, result) {
                 if(error) {

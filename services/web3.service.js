@@ -10,7 +10,7 @@ class Web3Service {
         this.web3 = null;
     }
 
-    get(web3) {
+    get() {
 
         const self = this;
 
@@ -21,16 +21,19 @@ class Web3Service {
                 eth.get('rinkeby').then((web3) => {
 
                     self.web3 = web3;
-                    resolve();
+                    resolve(self.web3);
                 });
 
 
             } else {
-
-                self.web3 = web3;
-                resolve();
+                resolve(self.web3);
             }
         });
+    }
+
+    set(web3) {
+
+        this.web3 = web3;
     }
 }
 
