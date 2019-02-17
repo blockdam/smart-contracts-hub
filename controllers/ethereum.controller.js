@@ -29,20 +29,19 @@ class EthereumController {
 
         eth.get('rinkeby').then( (web3) => {
 
-            logger.info('how many?');
             web3Service.set(web3);
 
-            subscription = web3.eth.subscribe('logs', options, function (error, result) {
+            subscription = web3.eth.subscribe('newBlockHeaders', options, function (error, result) {
                 if(error) {
                     logger.info(error);
                 } else {
                     logger.info('listening to rinkeby testnet');
                 }
             })
-            .on("data", function (log) {
+            .on("data", function (newBlockHeader) {
 
-
-                logger.info('notified of block ' + log.blockNumber);
+                logger.info(newBlockHeader);
+                // logger.info('notified of block ' + log.blockNumber);
                 tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
             });
         });
