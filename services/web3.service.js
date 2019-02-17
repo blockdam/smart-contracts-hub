@@ -1,5 +1,6 @@
 'use strict';
 
+const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('./logger.service');
 const config = require('../config/index');
