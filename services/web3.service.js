@@ -9,7 +9,7 @@ class Web3Service {
 
     init(web3) {
 
-        self.web3 = web3;
+        this.web3 = web3;
     }
 }
 
