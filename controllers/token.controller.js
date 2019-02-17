@@ -66,7 +66,7 @@ class TokenController {
 
     getPastEvents(web3,fromBlock) {
 
-        logger.info('skolko?');
+
 
         let self = this;
         self.eventList = [];
@@ -74,6 +74,8 @@ class TokenController {
         logger.info('syncing from ' + fromBlock);
 
         return new Promise((resolve, reject) => {
+
+            logger.info('skolko?');
 
             let options = {
                 fromBlock: fromBlock,
