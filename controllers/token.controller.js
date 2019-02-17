@@ -92,8 +92,13 @@ class TokenController {
                     })
                     .then(() => {
 
-                        self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
-                        logger.info('saved all events');
+                        if (transfers.length > 0) {
+                            self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
+                            logger.info('saved all events');
+                        } else {
+                            logger.info('saved zero events');
+                        }
+
                         resolve({});
                     })
                     .catch(error => {
