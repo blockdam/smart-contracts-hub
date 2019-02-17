@@ -16,6 +16,7 @@ app.listen(appConfig.port, () => {
     tokenCtrl.init().then( () => {
          // tokenCtrl.subscribe();
         // tokenCtrl.getPastEvents(appConfig.latestSyncedBlock);
+        ethereumCtrl.init();
     })
     .catch(error => {
         logger.error(error);
@@ -28,7 +29,7 @@ app.listen(appConfig.port, () => {
         logger.error(error);
     });
 
-    ethereumCtrl.init();
+
 
 
 });
