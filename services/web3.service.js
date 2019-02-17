@@ -5,11 +5,32 @@ const logger = require('./logger.service');
 const config = require('../config/index');
 
 class Web3Service {
-    constructor() {}
+    constructor() {
+
+        this.web3 = null;
+    }
 
     init(web3) {
 
-        this.web3 = web3;
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+
+            if (this.web3 === null) {
+
+                eth.get('rinkeby').then((web3) => {
+
+                    this.web3 = web3;
+                    resolve();
+                });
+
+
+            } else {
+
+                this.web3 = web3;
+                resolve();
+            }
+        });
     }
 }
 
