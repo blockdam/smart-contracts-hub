@@ -27,9 +27,9 @@ class EthereumController {
                 fromBlock: '0x0'
             };
 
-
         eth.get('rinkeby').then( (web3) => {
 
+            logger.info('how many?');
             web3Service.set(web3);
 
             subscription = web3.eth.subscribe('logs', options, function (error, result) {
@@ -41,7 +41,7 @@ class EthereumController {
             })
             .on("data", function (log) {
 
-                logger.info('how many?');
+
                 logger.info('notified of block ' + log.blockNumber);
                 tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
             });
