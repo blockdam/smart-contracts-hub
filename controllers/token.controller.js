@@ -62,7 +62,7 @@ class TokenController {
     //     });
     // }
 
-    getPastEvents(fromBlock) {
+    getPastEvents(web3,fromBlock) {
 
         let self = this;
         self.eventList = [];

@@ -36,7 +36,7 @@ class EthereumController {
                 }
             })
             .on("data", function (log) {
-                tokenCtrl.getPastEvents(config.latestSyncedBlock);
+                tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
             });
         });
     }
