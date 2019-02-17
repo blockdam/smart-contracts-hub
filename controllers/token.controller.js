@@ -66,6 +66,8 @@ class TokenController {
 
     getPastEvents(web3,fromBlock) {
 
+        logger.info('skolko?');
+
         let self = this;
         self.eventList = [];
 
@@ -80,12 +82,10 @@ class TokenController {
 
             self.web3Service.get().then( (web3) => {
 
-                logger.info('skolko?');
+
 
                 self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
                 self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
-
-                    logger.info('how many');
 
                     if (err) {
                         console.log(err)
