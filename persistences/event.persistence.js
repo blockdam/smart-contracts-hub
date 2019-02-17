@@ -49,7 +49,7 @@ class EventPersistence {
                 })
                 .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then(() => {
-                    // logger.info('event saved');
+                    logger.info('event saved');
                     resolve();
                 })
                 .catch((error) => {
