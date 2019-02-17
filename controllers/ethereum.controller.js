@@ -39,15 +39,10 @@ class EthereumController {
                 }
             })
             .on("data", function(blockHeader){
-                console.log(blockHeader);
+                console.log('block: ' + blockHeader.number);
+                tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
             })
             .on("error", console.error);
-            // .on("data", function (blockHeader) {
-            //
-            //     logger.info(blockHeader);
-            //     // logger.info('notified of block ' + log.blockNumber);
-            //     tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
-            // });
         });
     }
 }
