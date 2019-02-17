@@ -64,17 +64,15 @@ class TokenController {
     //     });
     // }
 
-    getPastEvents(web3,fromBlock) {
+    getPastEvents(web3) {
 
         let self = this;
         self.eventList = [];
 
-        logger.info('syncing from ' + fromBlock);
-
         return new Promise((resolve, reject) => {
 
             let options = {
-                fromBlock: fromBlock,
+                fromBlock: self.latestSyncedBlock,
                 toBlock: 'latest'
             };
 
@@ -93,8 +91,6 @@ class TokenController {
                         });
 
                         Promise.each(transfers, (transfer, i) => {
-
-                            logger.info(transfer);
                             return self._storeEvent(web3,transfer);
                         })
                         .then(() => {
