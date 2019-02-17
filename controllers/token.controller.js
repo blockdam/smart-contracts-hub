@@ -80,7 +80,7 @@ class TokenController {
 
             self.web3Service.get().then( (web3) => {
 
-                self.tokenContract = web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+                self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
                 self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                     if (err) {
