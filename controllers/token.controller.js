@@ -93,23 +93,25 @@ class TokenController {
                         });
 
                         Promise.each(transfers, (transfer, i) => {
+
+                            logger.info(transfer);
                             return self._storeEvent(web3,transfer);
                         })
-                            .then(() => {
+                        .then(() => {
 
-                                if (transfers.length > 0) {
-                                    self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
-                                    // logger.info('saved all events');
-                                } else {
-                                    logger.info('saved zero events');
-                                }
+                            if (transfers.length > 0) {
+                                self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
+                                // logger.info('saved all events');
+                            } else {
+                                logger.info('saved zero events');
+                            }
 
-                                resolve({});
-                            })
-                            .catch(error => {
-                                console.log(error);
-                                reject(error);
-                            });
+                            resolve({});
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            reject(error);
+                        });
                     }
                 });
             });

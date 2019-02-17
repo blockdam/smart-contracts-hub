@@ -35,7 +35,7 @@ class EthereumController {
                 if(error) {
                     logger.info(error);
                 } else {
-                    logger.info('listening to rinkeby testnet');
+                  //  logger.info('listening to rinkeby testnet');
                 }
             })
             .on("data", function(blockHeader){
