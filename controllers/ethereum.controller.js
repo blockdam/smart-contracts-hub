@@ -1,6 +1,7 @@
 const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
+const Web3Service = require('../services/web3.service');
 const config = require('../config');
 const WebSocket = require('ws');
 
@@ -18,6 +19,7 @@ class EthereumController {
 
         let tokenCtrl = new TokenController();
         let readingListCtrl = new ReadingListController();
+        let web3Service = new Web3Service();
 
         let self = this,
             subscription,
@@ -27,6 +29,8 @@ class EthereumController {
 
 
         eth.get('rinkeby').then( (web3) => {
+
+            web3Service.init(web3);
 
             subscription = web3.eth.subscribe('logs', options, function (error, result) {
                 if(error) {

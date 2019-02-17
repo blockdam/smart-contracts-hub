@@ -4,6 +4,7 @@ const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const TokenService = require('../services/token.service');
+const Web3Service = require('../services/web3.service');
 const EventDefinition = require('../definitions/event.definition');
 const EventPersistence = require('../persistences/event.persistence');
 const config = require('../config');
@@ -18,29 +19,30 @@ class TokenController {
         this.tokenService = new TokenService();
         this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
+        this.web3Service = new Web3Service();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
     }
 
-    init() {
-
-        let self = this;
-
-        return new Promise((resolve, reject) => {
-
-            eth.get('rinkeby').then( (web3) => {
-
-                self.web3 = web3;
-                self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
-                resolve();
-
-            })
-            .catch(error => {
-                logger.error(error);
-                reject(error);
-            });
-        });
-    }
+    // init() {
+    //
+    //     let self = this;
+    //
+    //     return new Promise((resolve, reject) => {
+    //
+    //         eth.get('rinkeby').then( (web3) => {
+    //
+    //             self.web3 = web3;
+    //             self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+    //             resolve();
+    //
+    //         })
+    //         .catch(error => {
+    //             logger.error(error);
+    //             reject(error);
+    //         });
+    //     });
+    // }
 
     // subscribe() {
     //
@@ -76,7 +78,7 @@ class TokenController {
                 toBlock: 'latest'
             };
 
-            self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+            self.tokenContract = self.web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
             self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                 if (err) {
