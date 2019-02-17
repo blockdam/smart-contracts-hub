@@ -78,7 +78,7 @@ class TokenController {
                 toBlock: 'latest'
             };
 
-            self.web3Service.web3().then( (web3) => {
+            self.web3Service.get().then( (web3) => {
 
                 self.tokenContract = web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
                 self.tokenContract.getPastEvents("allEvents", options, function (err, data) {

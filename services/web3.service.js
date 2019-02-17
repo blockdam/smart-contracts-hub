@@ -10,7 +10,7 @@ class Web3Service {
         this.web3 = null;
     }
 
-    init(web3) {
+    get(web3) {
 
         const self = this;
 
