@@ -13,7 +13,7 @@ app.listen(appConfig.port, () => {
 
     tokenCtrl.init().then( () => {
       //   tokenCtrl.subscribe();
-         tokenCtrl.getPastEvents();
+         tokenCtrl.getPastEvents(appConfig.latestSyncedBlock);
     })
     .catch(error => {
         logger.error(error);
