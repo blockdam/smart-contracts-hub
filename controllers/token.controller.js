@@ -83,6 +83,8 @@ class TokenController {
                 self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
                 self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
+                    logger.info('how many');
+
                     if (err) {
                         console.log(err)
                     }
@@ -91,8 +93,6 @@ class TokenController {
                         let transfers = data.filter((e) => {
                             return e.event === 'Transfer'
                         });
-
-                        logger.info(transfers);
 
                         Promise.each(transfers, (transfer, i) => {
                             return self._storeEvent(web3,transfer);
