@@ -4,7 +4,7 @@ const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const TokenService = require('../services/token.service');
-const Web3Service = require('../services/web3.service');
+const web3Service = require('../services/web3.service');
 const EventDefinition = require('../definitions/event.definition');
 const EventPersistence = require('../persistences/event.persistence');
 const config = require('../config');
@@ -77,7 +77,7 @@ class TokenController {
                 toBlock: 'latest'
             };
 
-            self.tokenContract = self.web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+            self.tokenContract = web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
             self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                 if (err) {
