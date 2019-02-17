@@ -78,39 +78,42 @@ class TokenController {
                 toBlock: 'latest'
             };
 
-            self.tokenContract = self.web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
-            self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
+            self.web3Service.web3().then( (web3) => {
 
-                if (err) {
-                    console.log(err)
-                }
-                if (data) {
+                self.tokenContract = web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+                self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
-                    let transfers = data.filter((e) => {
-                        return e.event === 'Transfer'
-                    });
+                    if (err) {
+                        console.log(err)
+                    }
+                    if (data) {
 
-                    logger.info(transfers);
+                        let transfers = data.filter((e) => {
+                            return e.event === 'Transfer'
+                        });
 
-                    Promise.each(transfers, (transfer, i) => {
-                        return self._storeEvent(web3,transfer);
-                    })
-                    .then(() => {
+                        logger.info(transfers);
 
-                        if (transfers.length > 0) {
-                            self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
-                            // logger.info('saved all events');
-                        } else {
-                            logger.info('saved zero events');
-                        }
+                        Promise.each(transfers, (transfer, i) => {
+                            return self._storeEvent(web3,transfer);
+                        })
+                            .then(() => {
 
-                        resolve({});
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        reject(error);
-                    });
-                }
+                                if (transfers.length > 0) {
+                                    self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
+                                    // logger.info('saved all events');
+                                } else {
+                                    logger.info('saved zero events');
+                                }
+
+                                resolve({});
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                reject(error);
+                            });
+                    }
+                });
             });
         });
     }
