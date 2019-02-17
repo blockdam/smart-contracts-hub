@@ -22,25 +22,25 @@ class TokenController {
         this.latestSyncedBlock = config.latestSyncedBlock;
     }
 
-    // init() {
-    //
-    //     let self = this;
-    //
-    //     return new Promise((resolve, reject) => {
-    //
-    //         eth.get('rinkeby').then( (web3) => {
-    //
-    //             self.web3 = web3;
-    //             self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
-    //             resolve();
-    //
-    //         })
-    //         .catch(error => {
-    //             logger.error(error);
-    //             reject(error);
-    //         });
-    //     });
-    // }
+    init() {
+
+        let self = this;
+
+        return new Promise((resolve, reject) => {
+
+            eth.get('rinkeby').then( (web3) => {
+
+                self.web3 = web3;
+                self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+                resolve();
+
+            })
+            .catch(error => {
+                logger.error(error);
+                reject(error);
+            });
+        });
+    }
 
     // subscribe() {
     //
