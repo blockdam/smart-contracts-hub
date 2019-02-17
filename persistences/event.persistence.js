@@ -50,9 +50,7 @@ class EventPersistence {
                 .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then((response) => {
 
-                    logger.info(response.result);
-
-                    if (response.result.upsertedId) {
+                    if (response.result.upserted) {
                         logger.info('event saved');
                     }
                     resolve();
