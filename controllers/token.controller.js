@@ -96,7 +96,7 @@ class TokenController {
                         .then(() => {
 
                             if (transfers.length > 0) {
-                                self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber;
+                                self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber - 10;
                                 // logger.info('saved all events');
                             } else {
                                 logger.info('saved zero events');
