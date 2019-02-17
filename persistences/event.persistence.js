@@ -43,6 +43,9 @@ class EventPersistence {
         let collection = null;
         return new Promise((resolve, reject) => {
 
+
+            logger.info(data);
+
             db.getEventsCollection()
                 .then( (coll) => {
                     return new Promise((res, rej) => {  collection = coll; res({}); })
