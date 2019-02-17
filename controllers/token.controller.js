@@ -4,7 +4,7 @@ const eth = require('../connectors/ethereum.connector');
 const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const TokenService = require('../services/token.service');
-const web3Service = require('../services/web3.service');
+const Web3Service = require('../services/web3.service');
 const EventDefinition = require('../definitions/event.definition');
 const EventPersistence = require('../persistences/event.persistence');
 const config = require('../config');
@@ -21,6 +21,7 @@ class TokenController {
         this.eventDefinition = new EventDefinition();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
+        this.web3Service = new Web3Service();
     }
 
     init() {
@@ -77,7 +78,7 @@ class TokenController {
                 toBlock: 'latest'
             };
 
-            self.tokenContract = web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+            self.tokenContract = self.web3Service.web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
             self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                 if (err) {
