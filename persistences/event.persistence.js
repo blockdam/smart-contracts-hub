@@ -47,7 +47,7 @@ class EventPersistence {
                 .then( (coll) => {
                     return new Promise((res, rej) => {  collection = coll; res({}); })
                 })
-                .then( () => { logger.info(data); return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
+                .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then(() => {
                     logger.info('event saved');
                     resolve();

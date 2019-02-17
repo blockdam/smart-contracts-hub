@@ -12,8 +12,8 @@ app.listen(appConfig.port, () => {
     let readingListCtrl = new ReadingListController();
 
     tokenCtrl.init().then( () => {
-         tokenCtrl.subscribe();
-       // tokenCtrl.getPastEvents();
+      //   tokenCtrl.subscribe();
+         tokenCtrl.getPastEvents();
     })
     .catch(error => {
         logger.error(error);
