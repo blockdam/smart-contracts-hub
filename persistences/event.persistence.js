@@ -44,7 +44,7 @@ class EventPersistence {
         return new Promise((resolve, reject) => {
 
 
-            logger.info(data);
+            // logger.info(data);
 
             db.getEventsCollection()
                 .then( (coll) => {
@@ -52,7 +52,7 @@ class EventPersistence {
                 })
                 .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
                 .then(() => {
-                    logger.info('event saved');
+                    // logger.info('event saved');
                     resolve();
                 })
                 .catch((error) => {

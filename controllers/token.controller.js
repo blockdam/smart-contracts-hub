@@ -90,7 +90,7 @@ class TokenController {
                         return e.event === 'Transfer'
                     });
 
-                    // logger.info(transfers);
+                    logger.info(transfers);
 
                     Promise.each(transfers, (transfer, i) => {
                         return self._storeEvent(web3,transfer);
