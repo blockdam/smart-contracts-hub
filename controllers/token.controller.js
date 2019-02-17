@@ -89,7 +89,7 @@ class TokenController {
                     });
 
                     Promise.each(transfers, (transfer, i) => {
-                        return self._storeEvent(transfer);
+                        return self._storeEvent(web3,transfer);
                     })
                     .then(() => {
 
@@ -111,13 +111,13 @@ class TokenController {
         });
     }
 
-    _storeEvent(event) {
+    _storeEvent(web3,event) {
 
         let self = this;
 
         logger.info(event);
 
-        self.tokenService.getBlockDate(self.web3,event.blockNumber)
+        self.tokenService.getBlockDate(web3,event.blockNumber)
             .then( (date) => {
                 return new Promise((res, rej) => {  event.date = date; res({}); })
             })
