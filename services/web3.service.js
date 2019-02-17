@@ -16,18 +16,18 @@ class Web3Service {
 
         return new Promise((resolve, reject) => {
 
-            if (this.web3 === null) {
+            if (self.web3 === null) {
 
                 eth.get('rinkeby').then((web3) => {
 
-                    this.web3 = web3;
+                    self.web3 = web3;
                     resolve();
                 });
 
 
             } else {
 
-                this.web3 = web3;
+                self.web3 = web3;
                 resolve();
             }
         });
