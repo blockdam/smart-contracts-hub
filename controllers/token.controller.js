@@ -19,7 +19,6 @@ class TokenController {
         this.tokenService = new TokenService();
         this.eventPersistence = new EventPersistence();
         this.eventDefinition = new EventDefinition();
-        this.web3Service = new Web3Service();
         this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/bcdToken.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
     }
