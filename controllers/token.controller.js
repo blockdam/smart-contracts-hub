@@ -22,45 +22,45 @@ class TokenController {
         this.latestSyncedBlock = config.latestSyncedBlock;
     }
 
-    init() {
+    // init() {
+    //
+    //     let self = this;
+    //
+    //     return new Promise((resolve, reject) => {
+    //
+    //         eth.get('rinkeby').then( (web3) => {
+    //
+    //             self.web3 = web3;
+    //             self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
+    //             resolve();
+    //
+    //         })
+    //         .catch(error => {
+    //             logger.error(error);
+    //             reject(error);
+    //         });
+    //     });
+    // }
 
-        let self = this;
-
-        return new Promise((resolve, reject) => {
-
-            eth.get('rinkeby').then( (web3) => {
-
-                self.web3 = web3;
-                self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
-                resolve();
-
-            })
-            .catch(error => {
-                logger.error(error);
-                reject(error);
-            });
-        });
-    }
-
-    subscribe() {
-
-        let self = this;
-        let options = {
-            fromBlock: '0x0',
-            address: config.addresses.bcdToken
-        };
-
-        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-            if(error) {
-                logger.info(error);
-            } else {
-                logger.info('listening to ' + config.addresses.bcdToken);
-            }
-        })
-        .on("data", function (log) {
-            self.getPastEvents(self.latestSyncedBlock);
-        });
-    }
+    // subscribe() {
+    //
+    //     let self = this;
+    //     let options = {
+    //         fromBlock: '0x0',
+    //         address: config.addresses.bcdToken
+    //     };
+    //
+    //     let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+    //         if(error) {
+    //             logger.info(error);
+    //         } else {
+    //             logger.info('listening to ' + config.addresses.bcdToken);
+    //         }
+    //     })
+    //     .on("data", function (log) {
+    //         self.getPastEvents(self.latestSyncedBlock);
+    //     });
+    // }
 
     getPastEvents(fromBlock) {
 
@@ -76,6 +76,7 @@ class TokenController {
                 toBlock: 'latest'
             };
 
+            self.tokenContract = new web3.eth.Contract(self.tokenAbi,config.addresses.bcdToken);
             self.tokenContract.getPastEvents("allEvents", options, function (err, data) {
 
                 if (err) {
