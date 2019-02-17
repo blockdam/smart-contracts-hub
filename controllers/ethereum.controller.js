@@ -42,6 +42,5 @@ class EthereumController {
     }
 }
 
-}
 
 module.exports = EthereumController;
