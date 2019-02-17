@@ -31,19 +31,23 @@ class EthereumController {
 
             web3Service.set(web3);
 
-            subscription = web3.eth.subscribe('newBlockHeaders', options, function (error, result) {
+            subscription = web3.eth.subscribe('newBlockHeaders', function (error, result) {
                 if(error) {
                     logger.info(error);
                 } else {
                     logger.info('listening to rinkeby testnet');
                 }
             })
-            .on("data", function (newBlockHeader) {
-
-                logger.info(newBlockHeader);
-                // logger.info('notified of block ' + log.blockNumber);
-                tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
-            });
+            .on("data", function(blockHeader){
+                console.log(blockHeader);
+            })
+            .on("error", console.error);
+            // .on("data", function (blockHeader) {
+            //
+            //     logger.info(blockHeader);
+            //     // logger.info('notified of block ' + log.blockNumber);
+            //     tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
+            // });
         });
     }
 }
