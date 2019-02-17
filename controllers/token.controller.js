@@ -114,6 +114,8 @@ class TokenController {
 
         let self = this;
 
+        logger.info(event);
+
         self.tokenService.getBlockDate(self.web3,event.blockNumber)
             .then( (date) => {
                 return new Promise((res, rej) => {  event.date = date; res({}); })
