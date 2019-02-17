@@ -40,6 +40,8 @@ class EthereumController {
                 }
             })
             .on("data", function (log) {
+
+                logger.info('how many?');
                 logger.info('notified of block ' + log.blockNumber);
                 tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
             });
