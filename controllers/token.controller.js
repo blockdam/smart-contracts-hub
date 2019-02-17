@@ -97,7 +97,7 @@ class TokenController {
 
                             if (transfers.length > 0) {
                                 self.latestSyncedBlock = transfers[transfers.length - 1].blockNumber - 10;
-                                // logger.info('saved all events');
+                                logger.info('latestSyncedBlock ' + self.latestSyncedBlock);
                             } else {
                                 logger.info('saved zero events');
                             }
