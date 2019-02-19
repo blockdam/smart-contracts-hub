@@ -40,6 +40,21 @@ module.exports = {
         return getMongoConnection().then((conn) => {
             return conn.collection('links');
         })
+    },
+    getMintersCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('dao_voucherMintGuardian');
+        })
+    },
+    getVouchersCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('dao_voucherRegistry');
+        })
+    },
+    getProposalsCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('dao_proposalRegistry');
+        })
     }
 };
 
