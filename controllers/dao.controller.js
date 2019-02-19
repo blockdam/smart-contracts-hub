@@ -25,17 +25,17 @@ class DaoController {
             permissions.userAddress = req.body.userAddress;
             logger.info(permissions.userAddress);
 
-            res.json(permissions);
-            res.status(200);
 
-            // self.minterPersistence.isMinter(permissions).then( permissions => {
-            //
-            //     return self.hasVouchers(permissions);
-            //
-            // }).then( permissions => {
-            //
-            //
-            // });
+
+            self.minterPersistence.isMinter(permissions).then( permissions => {
+
+                return self.hasVouchers(permissions);
+
+            }).then( permissions => {
+
+                res.json(permissions);
+                res.status(200);
+            });
         }
 
 
