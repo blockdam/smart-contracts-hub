@@ -50,11 +50,13 @@ class VoucherPersistence {
             }
 
             db.getVouchersCollection() // get page collection
-                .then((collection) => { return collection.replaceOne({ 'ethAddress' : data.ethAddress }, data, { 'upsert': true }); }) }) // execute find query
+                .then((collection) => { return collection.replaceOne({ 'ethAddress' : data.ethAddress }, data, { 'upsert': true }); }) // execute find query
                 .then((result) => {
                     resolve();
                 })
-                .catch( (err) => { reject(err); })
+                .catch( (err) => {
+                    reject(err);
+                })
         })
 
     }
