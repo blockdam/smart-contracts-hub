@@ -48,7 +48,8 @@ class MinterPersistence {
             now = new Date(),
             query = {
                 'ethAddress': permissions.userAddress,
-                'budget': { $gt : 0 }
+                'budget' : { $gt : 0 },
+                'period' : { $lt : now }
             };
 
         return new Promise((resolve, reject) => {
@@ -57,7 +58,6 @@ class MinterPersistence {
                 .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
 
-                    logger.info(result);
                     if (result){
                         permissions.minter = true;
                     } else {
