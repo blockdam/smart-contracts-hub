@@ -48,8 +48,7 @@ class MinterPersistence {
             now = new Date(),
             query = {
                 ethAddress: permissions.userAddress,
-                budget: { $gt : 0 },
-                period: { $lt : now }
+                budget: { $gt : 0 }
             };
 
         return new Promise((resolve, reject) => {
