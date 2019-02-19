@@ -40,7 +40,7 @@ class MinterPersistence {
         })
     }
 
-    isMinter(permissions) {     
+    isMinter(permissions) {
 
         let self = this,
             query = {
@@ -53,6 +53,7 @@ class MinterPersistence {
                 .then((collection) => { return collection.find(query).toArray(); }) // execute find query
                 .then((result) => {
                     if(result){
+                        logger.info(result);
                         permissions.minter = true;
                     } else {
                         permissions.minter = false;
