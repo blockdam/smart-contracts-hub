@@ -57,7 +57,7 @@ class MinterPersistence {
                 .then((result) => {
 
                     if (result){
-                        permissions.minter = true;
+                        permissions.minter = result;
                     } else {
                         permissions.minter = false;
                     }
