@@ -41,6 +41,7 @@ class EthereumController {
             .on("data", function(blockHeader){
                 console.log('block: ' + blockHeader.number);
                 tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
+                // readingListCtrl.getList();
             })
             .on("error", console.error);
         });

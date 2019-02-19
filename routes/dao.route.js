@@ -5,15 +5,12 @@ let express = require('express'),
 
 const router = express.Router();
 
+const daoCtrl = new daoCtrl();
+const handlePermissionsCall = daoCtrl.handlePermissionsCall.bind(daoCtrl);
 
-const ctrl = daoCtrl(); // create instance of instagram controller
 
-// CRUD routes
-router.route('/')
+router.route('/permissions')
+    .post(handlePermissionsCall)
 
-    .get(ctrl.handleGetCall)
-// .post(ctrl.getFeed)
-// .put(update)
-// .delete(del);
 
 module.exports = router;

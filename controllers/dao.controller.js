@@ -1,62 +1,55 @@
 'use strict';
 
-// let FacebookService = require('../services/facebook'),
-//     MappingService = require('../services/mapping');
+const eth = require('../connectors/ethereum.connector');
+const Promise = require('bluebird');
+const logger = require('../services/logger.service');
+const TokenService = require('../services/token.service');
+const Web3Service = require('../services/web3.service');
+const EventDefinition = require('../definitions/event.definition');
+const EventPersistence = require('../persistences/event.persistence');
+const config = require('../config');
+const fs = require('graceful-fs');
 
-const daoCtrl = () => {
 
-    // let facebookService = FacebookService();
-    // let mappingService = MappingService();
+class DaoController {
 
-    return {
+        constructor() {}
 
-        handleGetCall: (req, res) => {
+        handlePermissionsCall(req,res,next) {
 
-            // if (req.body) {
-            //
-            //     let feed = req.body;
-            //
-            //     switch (feed.type) {
-            //         case 'facebook':
-            //             facebookService.getFeed(feed)
-            //                 .then(response => {
-            //                     let socials = response.data;
-            //                     let mappedArray = [];
-            //                     for (let i in socials) {
-            //                         let social = socials[i];
-            //                         let mappedSocial = mappingService.mapFacebookSocial(social);
-            //                         mappedArray.push(mappedSocial);
-            //                     }
-            //                     console.log(mappedArray);
-            //
-            //                     res.send(mappedArray)
-            //                 })
-            //                 .catch(function(error) {
-            //                     console.log(error);
-            //                     if(error.response.error.code === 'ETIMEDOUT') {
-            //                         console.log('request timeout');
-            //                     } else {
-            //                         res.status(500).send(error);
-            //                     }
-            //                 });
-            //             break;
-            //         case 'instagram':
-            //             console.log('insta');
-            //             break;
-            //         case 'twitter':
-            //             console.log('twitter');
-            //     }
-            // } else {
-            //     c
-            // }
+            let self = this,
+                permissions = {};
+            
+            permissions.userAddress = req.body.userAddress;
+            logger.info(permissions.userAddress);
 
-            res.status(200).send('werkt');
+            self.isMinter(permissions).then( permissions => {
 
+                return self.hasVouchers(permissions);
+
+            }).then( permissions => {
+
+                res.json(permissions);
+                res.status(200);
+            });
         }
 
-    }
+        isMinter(permissions) {
 
+            return new Promise((res, rej) => {
+
+                    res(permissions);
+            });
+        }
+
+        hasVouchers(permissions) {
+
+            return new Promise((res, rej) => {
+
+                    res(permissions);
+            });
+        }
 }
 
-module.exports = daoCtrl;
+module.exports = DaoController;
 
