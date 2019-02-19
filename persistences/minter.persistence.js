@@ -44,14 +44,14 @@ class MinterPersistence {
 
         let self = this,
             query = {
-                'ethAddress' : permissions.userAddress,
+           
                 'budget' : { $gt : 0 }
             };
 
         return new Promise((resolve, reject) => {
 
             db.getMintersCollection() // get page collection
-                .then((collection) => { logger.info(collection); return collection.findOne(query); }) // execute find query
+                .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
                     if(result){
                         permissions.minter = true;
