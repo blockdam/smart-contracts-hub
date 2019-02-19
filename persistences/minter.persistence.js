@@ -42,6 +42,8 @@ class MinterPersistence {
 
     isMinter(permissions) {
 
+        logger.info(permissions.userAddress);
+
         let self = this,
             query = {
             ethAddress: '0xB6cA51CA72C689b720235aCA37E579f821FA05EE'
