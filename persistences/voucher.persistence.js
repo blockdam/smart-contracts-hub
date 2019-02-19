@@ -16,8 +16,6 @@ class VoucherPersistence {
 
     }
 
-
-
     getVoucherCount(permissions) {
         
         let self = this,
@@ -45,4 +43,4 @@ class VoucherPersistence {
     
 }
 
-module.exports = MinterPersistence;
+module.exports = VoucherPersistence;
