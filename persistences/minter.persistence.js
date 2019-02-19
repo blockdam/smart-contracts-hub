@@ -46,8 +46,7 @@ class MinterPersistence {
 
         let self = this,
             query = {
-                ethAddress: permissions.userAddress,
-                 budget: { $gt : 0 }
+                ethAddress: permissions.userAddress
             };
 
         return new Promise((resolve, reject) => {
