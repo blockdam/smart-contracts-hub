@@ -50,7 +50,7 @@ class MintersPersistence {
 
         return new Promise((resolve, reject) => {
             db.getMintersCollection() // get page collection
-                .then((collection) => { return collection.findOne(query); }) // execute find query
+                // .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
                     if(result){
                         permissions.minter = true;
