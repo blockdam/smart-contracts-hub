@@ -39,14 +39,6 @@ class DaoController {
         }
 
 
-        hasVouchers(permissions) {
-
-            return new Promise((res, rej) => {
-
-                    res(permissions);
-            });
-        }
-
         eligibleVoters() {
 
 

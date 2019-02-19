@@ -38,9 +38,7 @@ class VoucherPersistence {
                 })
                 .catch( (err) => { reject(err); })
         })
-
     }
-    
 }
 
 module.exports = VoucherPersistence;
