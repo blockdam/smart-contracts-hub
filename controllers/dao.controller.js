@@ -39,9 +39,9 @@ class DaoController {
 
         handleMintCall(req,res,next) {
 
-
-            let ethAddress = req.body.ethAddress;
-            let vouchers = req.body.vouchers;
+            let self = this,
+                ethAddress = req.body.ethAddress,
+                vouchers = req.body.vouchers;
 
             self.voucherPersistence.mint(ethAddress, vouchers).then((result) => {
 
