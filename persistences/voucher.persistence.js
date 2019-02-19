@@ -16,15 +16,6 @@ class VoucherPersistence {
 
     }
 
-    findAll(options) {
-        const self = this;
-        return new Promise((resolve, reject) => {
-            db.getMintersCollection() // get page collection
-                .then((collection) => { return collection.find({}).toArray(); }) // execute find query
-                .then((result) => { resolve(result);})
-                .catch( (err) => { reject(err); })
-        })
-    }
 
 
     getVoucherCount(permissions) {
@@ -51,41 +42,7 @@ class VoucherPersistence {
         })
 
     }
-
-    // save(data) {
-    //     const self = this;
-    //     let collection = null;
-    //     return new Promise((resolve, reject) => {
-    //
-    //         db.getMembersCollection()
-    //             .then( (coll) => {
-    //                 return new Promise((res, rej) => {  collection = coll; res({}); })
-    //             })
-    //             .then( () => { return collection.replaceOne({ '_id' : data._id }, data, { 'upsert': true }); })
-    //             .then(() => {
-    //                 resolve();
-    //             })
-    //             .catch((error) => {
-    //                 reject(error);
-    //             });
-    //     });
-    // }
-    //
-    // delete(id, correlationId) {
-    //     const self = this;
-    //     return new Promise((resolve, reject) => {
-    //         db.getMembersCollection() // get page collection
-    //             .then((collection) => { return collection.remove({"_id": id}); }) // execute delete
-    //             .then((d) => {
-    //                 logger.info('Deleted member from database', correlationId);
-    //                 resolve(id);
-    //             })
-    //             .catch((error) => {
-    //                 // error.correlationId = correlationId;
-    //                 reject(error);
-    //             })
-    //     })
-    // }
+    
 }
 
 module.exports = MinterPersistence;
