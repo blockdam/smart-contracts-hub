@@ -50,18 +50,17 @@ class MinterPersistence {
 
         return new Promise((resolve, reject) => {
 
-            resolve(permissions);
-            // db.getMintersCollection() // get page collection
-            //     // .then((collection) => { return collection.findOne(query); }) // execute find query
-            //     .then((result) => {
-            //         if(result){
-            //             permissions.minter = true;
-            //         } else {
-            //             permissions.minter = false;
-            //         }
-            //         resolve(permissions);
-            //     })
-            //     .catch( (err) => { reject(err); })
+            db.getMintersCollection() // get page collection
+                .then((collection) => { return collection.findOne(query); }) // execute find query
+                .then((result) => {
+                    if(result){
+                        permissions.minter = true;
+                    } else {
+                        permissions.minter = false;
+                    }
+                    resolve(permissions);
+                })
+                .catch( (err) => { reject(err); })
         })
 
     }
