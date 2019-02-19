@@ -44,8 +44,7 @@ class MinterPersistence {
 
         let self = this,
             query = {
-
-
+                'ethAddress' : permissions.userAddress
             };
 
         return new Promise((resolve, reject) => {
@@ -53,7 +52,7 @@ class MinterPersistence {
             db.getMintersCollection() // get page collection
                 .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
-                    if (result){
+                    if(result){
                         permissions.minter = true;
                     } else {
                         permissions.minter = false;
