@@ -40,7 +40,7 @@ class MinterPersistence {
         })
     }
 
-    isMinter(permissions) {
+    isMinter(permissions) {     
 
         let self = this,
             query = {
@@ -50,7 +50,7 @@ class MinterPersistence {
         return new Promise((resolve, reject) => {
 
             db.getMintersCollection() // get page collection
-                .then((collection) => { return collection.findOne(query); }) // execute find query
+                .then((collection) => { return collection.find(query).toArray(); }) // execute find query
                 .then((result) => {
                     if(result){
                         permissions.minter = true;
