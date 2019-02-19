@@ -44,13 +44,13 @@ class MinterPersistence {
 
         let self = this,
             query = {
-                'ethAddress' : 0xb6ca51ca72c689b720235aca37e579f821fa05ee
+                'ethAddress' : '0xb6ca51ca72c689b720235aca37e579f821fa05ee'
             };
 
         return new Promise((resolve, reject) => {
 
             db.getMintersCollection() // get page collection
-                .then((collection) => { return collection.find(query).toArray(); }) // execute find query
+                .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
                     if (result){
                         logger.info(result);
