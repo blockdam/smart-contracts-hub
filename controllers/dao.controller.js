@@ -6,6 +6,7 @@ const logger = require('../services/logger.service');
 const TokenService = require('../services/token.service');
 const Web3Service = require('../services/web3.service');
 const MinterPersistence = require('../persistences/minter.persistence');
+const VoucherPersistence = require('../persistences/voucher.persistence');
 const config = require('../config');
 const fs = require('graceful-fs');
 
@@ -15,6 +16,7 @@ class DaoController {
         constructor() {
 
             this.minterPersistence = new MinterPersistence();
+            this.voucherPersistence = new VoucherPersistence();
         }
 
         handlePermissionsCall(req,res,next) {
@@ -27,7 +29,7 @@ class DaoController {
 
             self.minterPersistence.isMinter(permissions).then( permissions => {
 
-                return self.hasVouchers(permissions);
+                return self.voucherPersistence.getVoucherCount(permissions);
 
             }).then( permissions => {
 

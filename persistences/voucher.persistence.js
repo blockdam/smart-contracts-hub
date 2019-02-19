@@ -10,7 +10,7 @@ const moment = require('moment');
 /**
  * Class takes care of all database operations for the page
  */
-class MinterPersistence {
+class VoucherPersistence {
 
     constructor() {
 
@@ -26,40 +26,24 @@ class MinterPersistence {
         })
     }
 
-    findMinters() {
+
+    getVoucherCount(permissions) {
+        
         let self = this,
-        query = {
-                budget : { $gt : 0 }
-            };
-
-        return new Promise((resolve, reject) => {
-            db.getMintersCollection() // get page collection
-                .then((collection) => { return collection.find(query).toArray(); }) // execute find query
-                .then((result) => { resolve(result);})
-                .catch( (err) => { reject(err); })
-        })
-    }
-
-    isMinter(permissions) {
-
-        let self = this,
-            now = new Date(),
             query = {
-                'ethAddress': permissions.userAddress,
-                'budget' : { $gt : 0 },
-                'period' : { $gt : now }
+                'ethAddress': permissions.userAddress
             };
 
         return new Promise((resolve, reject) => {
 
-            db.getMintersCollection() // get page collection
+            db.getVouchersCollection() // get page collection
                 .then((collection) => { return collection.findOne(query); }) // execute find query
                 .then((result) => {
 
                     if (result){
-                        permissions.minter = true;
+                        permissions.vouchers = result.vouchers;
                     } else {
-                        permissions.minter = false;
+                        permissions.vouchers = 0;
                     }
                     resolve(permissions);
                 })
