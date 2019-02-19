@@ -49,7 +49,7 @@ class MinterPersistence {
             query = {
                 'ethAddress': permissions.userAddress,
                 'budget' : { $gt : 0 },
-                'period' : { $lt : now }
+                'period' : { $gt : now }
             };
 
         return new Promise((resolve, reject) => {
