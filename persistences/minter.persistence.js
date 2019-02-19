@@ -42,11 +42,12 @@ class MinterPersistence {
 
     isMinter(permissions) {
 
-        logger.info(permissions.userAddress);
+
 
         let self = this,
             query = {
-            ethAddress: permissions.userAddress.toString()
+                ethAddress: permissions.userAddress,
+                 budget: { $gt : 0 }
             };
 
         return new Promise((resolve, reject) => {
