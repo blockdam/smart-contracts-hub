@@ -52,7 +52,7 @@ class MinterPersistence {
             db.getMintersCollection() // get page collection
                 .then((collection) => { return collection.find(query).toArray(); }) // execute find query
                 .then((result) => {
-                    if(result){
+                    if (result){
                         logger.info(result);
                         permissions.minter = true;
                     } else {
