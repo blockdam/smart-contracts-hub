@@ -25,7 +25,6 @@ class DaoController {
                 permissions = {};
 
             permissions.userAddress = req.body.userAddress;
-            logger.info(permissions.userAddress);
 
             self.minterPersistence.isMinter(permissions).then( permissions => {
 

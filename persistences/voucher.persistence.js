@@ -39,6 +39,25 @@ class VoucherPersistence {
                 .catch( (err) => { reject(err); })
         })
     }
+
+    mint(address,amount) {
+
+        return new Promise((resolve, reject) => {
+
+            let data = {
+                'ethAddress' : address,
+                'vouchers' : amount
+            }
+
+            db.getVouchersCollection() // get page collection
+                .then((collection) => { return collection.replaceOne({ 'ethAddress' : data.ethAddress }, data, { 'upsert': true }); }) }) // execute find query
+                .then((result) => {
+                    resolve();
+                })
+                .catch( (err) => { reject(err); })
+        })
+
+    }
 }
 
 module.exports = VoucherPersistence;
