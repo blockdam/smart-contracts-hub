@@ -46,7 +46,7 @@ class MinterPersistence {
 
         let self = this,
             query = {
-            ethAddress: permissions.userAddress
+            ethAddress: permissions.userAddress.toString();
             };
 
         return new Promise((resolve, reject) => {
@@ -57,7 +57,6 @@ class MinterPersistence {
 
                     logger.info(result);
                     if (result){
-
                         permissions.minter = true;
                     } else {
                         permissions.minter = false;
