@@ -44,7 +44,7 @@ class MinterPersistence {
 
         let self = this,
             query = {
-          
+            ethAddress: '0xB6cA51CA72C689b720235aCA37E579f821FA05EE'
             };
 
         return new Promise((resolve, reject) => {
