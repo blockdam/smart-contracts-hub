@@ -10,7 +10,7 @@ const moment = require('moment');
 /**
  * Class takes care of all database operations for the page
  */
-class MintersPersistence {
+class MinterPersistence {
 
     constructor() {
 
@@ -102,4 +102,4 @@ class MintersPersistence {
     // }
 }
 
-module.exports = MintersPersistence;
+module.exports = MinterPersistence;
