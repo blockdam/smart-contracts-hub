@@ -14,8 +14,6 @@ function getMongoConnection() {
 
     return new Promise((resolve, reject) => {
 
-        logger.info(config);
-
         if (database === null) {
             MongoClient.connect('mongodb://localhost:27017', { promiseLibrary: Promise, poolSize: 10, useNewUrlParser: true }, (err, client) => {
 
