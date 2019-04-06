@@ -1,0 +1,28 @@
+
+<form>
+
+    <span class="status">{{body.task.status}}</span>
+    <span class="date">{{formatDate body.task.dueDate 'DD MMMM YYYY'}}</span>
+    <h3>{{body.task.title}}</h3>
+    <div class="small-sans" >{{body.task.description}}</div>
+    <div class="form-row with-icon">
+        <label id="pot">Pot</label>
+        <input type="number" id="pot" value="{{body.task.balance}}" readonly>
+    </div>
+
+
+    <span class="domain">{{body.task.domain.name}}</span>
+    <span class="skill">{{body.task.skillId}}</span>
+
+
+
+
+    <div class="manager"></div>
+    <div class="worker"></div>
+    <div class="evaluator"></div>
+
+
+    <div class="cursor_pointer button" onclick="dao.modifyTask(this,{{body.task.id}})">+</div>
+
+
+</form>

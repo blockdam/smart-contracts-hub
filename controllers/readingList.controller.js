@@ -17,7 +17,7 @@ class ReadingListController {
         // this.tokenService = new TokenService();
         // this.eventPersistence = new EventPersistence();
         // this.eventDefinition = new EventDefinition();
-        this.tokenAbi = JSON.parse(fs.readFileSync('/opt/smart-contract-hub/abi/ReadingList.json')).abi;
+        this.tokenAbi = JSON.parse(fs.readFileSync('./abi/ReadingList.json')).abi;
         this.latestSyncedBlock = config.latestSyncedBlock;
         this.web3 = null;
         this.contract = null;

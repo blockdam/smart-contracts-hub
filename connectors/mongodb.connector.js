@@ -16,6 +16,10 @@ function getMongoConnection() {
 
         if (database === null) {
             MongoClient.connect('mongodb://localhost:27017', { promiseLibrary: Promise, poolSize: 10, useNewUrlParser: true }, (err, client) => {
+
+                if(err){
+                    logger.info(err);
+                }
                 database = client.db(config.db);
                 resolve(database);
             });
@@ -34,6 +38,11 @@ module.exports = {
     getMembersCollection: function() {
         return getMongoConnection().then((conn) => {
             return conn.collection('members');
+        })
+    },
+    getDomainCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('colony_domains');
         })
     },
     getLinksCollection: function() {

@@ -1,0 +1,31 @@
+<form id="modify-task">
+    <div class="form-row with-icon">
+        <label id="dueDate">Due date</label>
+        <input type="date" id="dueDate" value="{{formatDate body.task.dueDate 'YYYY-MM-DD'}}">
+    </div>
+    <h3 id="modify-task-title" contenteditable="true">{{body.task.title}}</h3>
+    <div id="modify-task-description" class="small-sans" contenteditable="true">{{body.task.description}}</div>
+    <div><select id="modify-task-domain" required><option value="{{body.task.domainId}}">{{body.task.domain.name}}</option></select></div>
+    <div class="form-row with-icon">
+        <label id="pot">Pot</label>
+        <input type="number" id="pot" value="0"/>
+    </div>
+
+    <div class="form-row with-icon">
+        <label id="worker">Worker</label>
+        <input type="number" id="worker-amount" value="0">
+        <input type="text" id="worker-key" value="{{eth-address body.key}}" readonly>
+    </div>
+    <div class="form-row with-icon">
+        <label id="evaluator">Evaluator</label>
+        <input type="number" id="evaluator-amount" value="0">
+        <input id="evaluator-key" type="text" value="{{eth-address body.key}}" readonly>
+    </div>
+    <div class="form-row with-icon">
+        <label id="owner">Owner</label>
+        <input type="number" id="owner-amount" value="0">
+        <input id="owner-key" type="text" id="owner" value="{{eth-address body.key}}" readonly>
+    </div>
+
+    <button>Modify</button>
+</form>
