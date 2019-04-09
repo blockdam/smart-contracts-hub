@@ -62,8 +62,6 @@ class ReadingListController {
         let self = this,
             array = [];
 
-        res.send(200);
-
         eth.get('rinkeby').then( (web3) => {
             self.web3 = web3;
             self.contract = new self.web3.eth.Contract(self.tokenAbi,config.addresses.readingList);
