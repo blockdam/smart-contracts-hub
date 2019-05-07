@@ -9,20 +9,20 @@ const app = require('./express'),
 app.listen(appConfig.port, () => {
     console.log('server started on port ' + appConfig.port);
 
-    // let tokenCtrl = new TokenController();
+    let tokenCtrl = new TokenController();
     // let readingListCtrl = new ReadingListController();
-    let ethereumCtrl = new EthereumController();
+  //  let ethereumCtrl = new EthereumController();
 
-    ethereumCtrl.init();
+  //  ethereumCtrl.init();
 
-    // tokenCtrl.init().then( () => {
-    //      // tokenCtrl.subscribe();
-    //     // tokenCtrl.getPastEvents(appConfig.latestSyncedBlock);
-    //
-    // })
-    // .catch(error => {
-    //     logger.error(error);
-    // });
+    tokenCtrl.init().then( () => {
+     tokenCtrl.subscribe();
+        tokenCtrl.getPastEvents(appConfig.latestSyncedBlock);
+
+    })
+    .catch(error => {
+        logger.error(error);
+    });
 
     // readingListCtrl.init().then( () => {
     //     // readingListCtrl.subscribe();
