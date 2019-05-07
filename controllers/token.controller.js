@@ -69,6 +69,8 @@ class TokenController {
         let self = this;
         self.eventList = [];
 
+        logger.info('test');
+
         return new Promise((resolve, reject) => {
 
             let options = {

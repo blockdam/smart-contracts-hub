@@ -16,7 +16,7 @@ app.listen(appConfig.port, () => {
   //  ethereumCtrl.init();
 
     tokenCtrl.init().then( () => {
-     tokenCtrl.subscribe();
+        tokenCtrl.subscribe();
         tokenCtrl.getPastEvents(appConfig.latestSyncedBlock);
 
     })
