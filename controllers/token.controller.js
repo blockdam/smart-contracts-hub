@@ -44,25 +44,25 @@ class TokenController {
         });
     }
 
-    // subscribe() {
-    //
-    //     let self = this;
-    //     let options = {
-    //         fromBlock: '0x0',
-    //         address: config.addresses.bcdToken
-    //     };
-    //
-    //     let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
-    //         if(error) {
-    //             logger.info(error);
-    //         } else {
-    //             logger.info('listening to ' + config.addresses.bcdToken);
-    //         }
-    //     })
-    //     .on("data", function (log) {
-    //         self.getPastEvents(self.latestSyncedBlock);
-    //     });
-    // }
+    subscribe() {
+
+        let self = this;
+        let options = {
+            fromBlock: '0x0',
+            address: config.addresses.bcdToken
+        };
+
+        let subscription = self.web3.eth.subscribe('logs', options, function (error, result) {
+            if(error) {
+                logger.info(error);
+            } else {
+                logger.info('listening to ' + config.addresses.bcdToken);
+            }
+        })
+        .on("data", function (log) {
+            self.getPastEvents(self.latestSyncedBlock);
+        });
+    }
 
     getPastEvents(web3) {
 
