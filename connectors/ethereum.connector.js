@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const logger = require('../services/logger.service');
 const config = require('../config');
 const Web3 = require('web3');
-// const ganache = require("ganache-core");
+const ganache = require("ganache-core");
 
 // set database connection object
 let web3 = null;
