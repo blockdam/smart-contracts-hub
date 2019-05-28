@@ -30,6 +30,11 @@ function getMongoConnection() {
 }
 
 module.exports = {
+    getConfigCollection: function() {
+        return getMongoConnection().then((conn) => {
+            return conn.collection('config');
+        })
+    },
     getEventsCollection: function() {
         return getMongoConnection().then((conn) => {
             return conn.collection('bcdTokenEvents');

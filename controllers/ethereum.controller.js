@@ -17,6 +17,9 @@ class EthereumController {
 
     init() {
 
+
+        this.sync();
+
         let tokenCtrl = new TokenController();
         let readingListCtrl = new ReadingListController();
         let web3Service = new Web3Service();
@@ -40,11 +43,21 @@ class EthereumController {
             })
             .on("data", function(blockHeader){
                 console.log('block: ' + blockHeader.number);
-            //    tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
+                tokenCtrl.getPastEvents(web3,blockHeader.number;
                 // readingListCtrl.getList();
             })
             .on("error", console.error);
         });
+
+
+    }
+
+    sync() {
+
+        //ophalen
+
+        tokenCtrl.getPastEvents(web3,config.latestSyncedBlock);
+
     }
 }
 
